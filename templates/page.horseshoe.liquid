@@ -1,0 +1,94 @@
+<style>
+  .bg-gray {
+    background: #F2F2F2;
+  }
+  .land-header {
+      height: auto;
+      padding: 5% 0;
+  }
+  .land-body-container {
+    padding: 10% 0;
+  }
+  .land-body-container a {
+    color: black;
+  }
+  .land-body-container a:hover {
+    text-decoration: none;
+  }
+  .item-container {
+      width: 270px;
+      height: 450px;
+      background: #FFF;
+      padding: 20px;
+      margin: 10px auto;
+  }
+  .land-header h2,
+  .item-container .desc {
+    color: #757575;
+    font-family: serif;
+    /* font-style: italic; */
+    font-size: 20px;
+    line-height: 1.3em;
+    margin-bottom: auto;
+    margin-top: 0.3125em;
+    transition: color .1s ease-out;
+  }
+  a .item-container {
+    transition: .1s ease-in-out;
+  }
+  a .item-container h3 {
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-weight: bold;
+  }
+  .item-container:hover h3  {
+    color: #FFF !important;
+  }
+  a .item-container:hover {
+      background: #8FB254;
+      color: #FFF;
+  }
+  .item-container img {
+      width: 230px;
+      margin: 0 0 30px;
+  }
+@media only screen and (max-width: 600px) {
+  .item-container {
+    width: 100%;
+    text-align: center;
+  }
+  .item-container img {
+    width: 100%;
+    max-width: 240px;
+}
+.land-header {
+    height: initial;
+}
+}
+</style>
+
+<!-- /templates/page.liquid -->
+{% include 'breadcrumb' %}
+<div>
+  <div class="page-container">
+
+    {% comment %}
+      Regular page content goes here.
+    {% endcomment %}
+    <div class="rte"> 
+      {%- if settings.language_enable -%}
+        <div class="lang1">
+          {%- assign content_lg1 = page.content | split: '[lang2]' | first -%}
+          {% include 'shortcode' load: content_lg1 %}
+        </div>
+        <div class="lang2">
+          {%- assign content_lg2 = page.content | split: '[lang2]' | last -%}
+          {% include 'shortcode' load: content_lg2 %} 
+        </div>
+      {%- else -%}
+        {%- assign content_lg = page.content | split: '[lang2]' | first -%}
+        {% include 'shortcode' load: content_lg %}
+      {%- endif -%} 
+    </div>
+  </div>
+</div>

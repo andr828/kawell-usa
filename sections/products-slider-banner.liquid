@@ -1,0 +1,199 @@
+<style>
+#products-banner-{{ section.id }}.collection_banner .row{
+  background-color: {{ section.settings.bg_content_color }};
+}
+#products-banner-{{ section.id }}.collection_banner h3.fullwidth-filter-title{
+  color: {{ section.settings.title_color }};
+}
+#products-banner-{{ section.id }}.collection_banner p.fullwidth-filter-description{
+  color: {{ section.settings.text_color }};
+}
+</style>
+<div data-section-id="{{ section.id }}" data-section-type="products-banner-section">
+  <div id="products-banner-{{ section.id }}" class="collection_banner" style="background-color:{{section.settings.bg_section_color}}; margin-top: {{section.settings.margin_top | remove: 'px' | append: 'px' }};margin-bottom: {{section.settings.margin_bottom | remove: 'px' | append: 'px' }};padding: {{section.settings.section_padding}};">
+    <div class="row" style="margin:0;">
+      <div class="col-md-6 {% unless section.settings.banner_position == 'right' %}order-md-last{% endunless %} " style="padding:0;">
+        {%- if section.settings.banner_image != blank -%}
+        {%- assign image_url = section.settings.banner_image | img_url: '950x800' -%}
+        {%- else -%}
+        {%- assign image_url = 'img950x800.png' | asset_url -%}
+        {%- endif -%}
+        <div class="half-image lazyload lazypreload" data-bg="{{ image_url }}" style="background: center center / cover no-repeat; width: 100%; {% if section.settings.banner_position == 'right' %}min-height: 611px;{% else %}min-height: 654px;{% endif %}">
+          <img data-src="{{ image_url }}" alt="" style="width:100%;visibility:hidden;" />
+        </div>
+        <div class="collection-banner-ct">
+          <div class="banner-ct-area">
+            <span class="text">
+              {%- if settings.language_enable -%}
+              <div class="lang1">{{ section.settings.collection_banner_content | split: '|' | first }}</div>
+              <div class="lang2">{{ section.settings.collection_banner_content | split: '|' | last }}</div>
+              {%- else -%}
+              {{ section.settings.collection_banner_content | split: '|' | first }}
+              {%- endif -%}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 half-content {% if section.settings.banner_position == 'left' %}left-bn{% endif %}{% if section.settings.banner_position == 'right' %}right-bn{% endif %}" style="padding:4% 6% 1.5%;position:relative;text-align:left;">
+        {%- if section.settings.title != '' -%}
+        <h3 class="fullwidth-filter-title">
+          <span class="inner">
+            {%- if settings.language_enable -%}
+            <span class="lang1">{{ section.settings.title | split: '|' | first }}</span>
+            <span class="lang2">{{ section.settings.title | split: '|' | last }}</span>
+            {%- else -%}
+            {{ section.settings.title | split: '|' | first }}
+            {%- endif -%}
+          </span>
+        </h3>
+        {%- endif -%}
+        {%- if section.settings.banner_text != '' -%}
+        <p class="fullwidth-filter-description">
+          <span>
+            {%- if settings.language_enable -%}
+            <span class="lang1">{{ section.settings.banner_text | split: '|' | first }}</span>
+            <span class="lang2">{{ section.settings.banner_text | split: '|' | last }}</span>
+            {%- else -%}
+            {{ section.settings.banner_text | split: '|' | first }}
+            {%- endif -%}
+          </span>
+        </p>
+        {%- endif -%}
+        <div class="html-code-wrapper"> 
+          {%- if settings.language_enable -%}
+            <div class="lang1">
+              {%- assign content_lg1 = section.settings.html | split: '[lang2]' | first -%}
+              {% include 'shortcode' load: content_lg1 %}
+            </div>
+            <div class="lang2">
+              {%- assign content_lg2 = section.settings.html | split: '[lang2]' | last -%}
+              {% include 'shortcode' load: content_lg2 %} 
+            </div>
+          {%- else -%}
+            {%- assign content_lg = section.settings.html | split: '[lang2]' | first -%}
+            {% include 'shortcode' load: content_lg %}
+          {%- endif -%} 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Products Slider & Banner",
+  "settings": [
+  {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "bg_section_color",
+      "label": "Section background color"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Section margin top",
+      "info": "40px"
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Section margin bottom",
+      "info": "40px"
+    },
+    {
+      "type": "text",
+      "id": "section_padding",
+      "label": "Section padding",
+      "info": "Set padding for section top-right-bottom-left (ex: 0 0 10px 0)"
+    },
+    {
+      "type":"header",
+      "content": "Color"
+    },
+    {
+      "type": "color",
+      "id": "bg_content_color",
+      "label": "Background Content Color",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#666"
+    },
+    {
+      "type":"header",
+      "content": "Banner settings"
+    },
+    {
+      "type": "select",
+      "id": "banner_position",
+      "label": "Banner Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "left"
+        },
+        {
+          "value": "right",
+          "label": "right"
+        }
+      ],
+      "default": "left"
+    }, 
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+    "type": "textarea",
+    "id": "collection_banner_content",
+    "label": "Title Banner"
+    },
+    {
+      "type":"header",
+      "content": "Html and shortcode settings"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Amazing New<br>Collection"
+    },
+    {
+      "type": "text",
+      "id": "banner_text",
+      "label": "Collection Text",
+      "default": "Yes, this is our new collection, check it<br>out our new arrivals."
+    },
+    {
+      "type": "html",
+      "id": "html",
+      "label": "Html and shortcode" 
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Slider With Banner",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

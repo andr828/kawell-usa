@@ -1,0 +1,46 @@
+<!-- /templates/index.liquid -->
+{{ content_for_index }}
+<script>
+
+ jQuery( document ).ready(function() {
+   
+  dots11 = jQuery('.dots');
+   jQuery (".dots" ).click(function() {
+	
+   for (ii = 0; ii < dots11.length; ii++) { // to remove the active class from other dots
+        
+        dots11[ii].className = dots11[ii].className.replace(' active', '');
+    }
+jQuery(this).addClass( "active" );
+});
+
+   
+dots33 = jQuery('.dots3');
+   jQuery (".dots3" ).click(function() {
+	
+   for (ii = 0; ii < dots33.length; ii++) { // to remove the active class from other dots
+        
+        dots33[ii].className = dots33[ii].className.replace(' active', '');
+    }
+jQuery(this).addClass( "active" );
+});
+
+   
+   dots1 = jQuery('.dots1');
+
+jQuery (".dots1" ).click(function() {
+	
+   for (ii = 0; ii < dots1.length; ii++) { // to remove the active class from other dots
+        
+        dots1[ii].className = dots1[ii].className.replace(' active', '');
+    }
+jQuery(this).addClass( "active" );
+});
+jQuery("#slider-bullets1 > span:nth-child(1)").click();
+
+   
+
+   
+   });
+
+</script>

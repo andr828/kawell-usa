@@ -1,0 +1,812 @@
+<!-- style sheets -->
+<style>
+.main-section-one .home_slidebar .block-subscribe.block-{{ section.id }}{
+  border-top-color: {{ section.settings.border_top_block_subscribe }};
+  background-color: {{ section.settings.bg_block_subscribe }};
+}
+.main-section-one .home_slidebar .block-subscribe.block-{{ section.id }} .block-title{
+  color: {{ section.settings.title_block_subscribe }}
+}
+.main-section-one .home_slidebar .block-subscribe.block-{{ section.id }} .block-content{
+  color: {{ section.settings.text_content_block_subscribe }}
+}
+.main-section-one .home_slidebar .testimonials.testimonials-{{ section.id }} .item blockquote{
+  background-color: {{ section.settings.bg_blockquote_testimonials }};
+  color: {{ section.settings.text_content_block_testimonials }};
+}
+.main-section-one .home_slidebar .testimonials.testimonials-{{ section.id }} .item blockquote::after,
+.main-section-one .home_slidebar .testimonials.testimonials-{{ section.id }} .item blockquote::before{
+  color: {{ section.settings.text_content_block_testimonials }};
+}
+.main-section-one .home_slidebar .testimonials.testimonials-{{ section.id }} .item .testimonial-arrow-down{
+  border-top-color: {{ section.settings.bg_blockquote_testimonials }};
+}
+.main_section_{{ section.id }} .home_slidebar .blog_article .latest_news .item .row .post_date_new .long-date{
+  color: {{ section.settings.post_day_color }} !important;
+}
+.main_section_{{ section.id }} .blog_article .latest_news .post-date .day{
+  color: {{ section.settings.post_day_color }} !important;
+  background-color: {{ section.settings.post_day_bg_color }} !important;
+}
+.main_section_{{ section.id }} .blog_article .latest_news .post-date .month{
+  color: {{ section.settings.post_month_color }} !important;
+  background-color: {{ section.settings.post_month_bg_color }} !important;
+}
+.main_section_{{ section.id }} .blog_article .latest_news a.readmore{
+  color: {{ section.settings.read_more_blog_color }} !important;
+}
+.main_section_{{ section.id }} .blog_article .latest_news a.readmore:hover{
+  color: {{ section.settings.read_more_blog_hover_color }} !important;
+}
+.main_section_{{ section.id }} .blog_article .latest_news .postTitle h2 a{
+  color: {{ section.settings.title_blog_color }} !important;
+}
+.main_section_{{ section.id }} .blog_article .latest_news .postContent{
+  color: {{ section.settings.description_blog_color }} !important;
+}
+</style>
+<!-- style sheets end -->
+<div data-section-id="{{ section.id }}" data-section-type="main-block-section">
+  <div id="main-block-{{ section.id }}" class="main-section-one main_section main_section_{{ section.id }}" style="margin-top: {{section.settings.margin_top | remove: 'px' | append: 'px' }};margin-bottom: {{section.settings.margin_bottom | remove: 'px' | append: 'px' }};padding: {{section.settings.section_padding}};">
+    <div class="container">
+      <div class="row" style="margin:0 -10px;">
+        <div class="col-lg-3 home_slidebar" style="padding:0 10px;">
+          {%- if section.settings.home_slider_banner_enable != blank -%}
+          <div class="home_slider_banner" style="text-align:center;">
+            <div class="owl-banner">
+              <div class="data-carousel" 
+                   data-items="1"
+                   data-auto="5000"
+                   data-paging="true"
+                   data-nav="false"
+                   data-prev=''
+                   data-margin="0"
+                   data-next='' style="display: none;"></div>
+              <div class="item-320-1 owl-carousel carousel-int owl-carousel-lazy">
+                {%- for i in (1..3) -%}
+                {%- capture banner -%}slider_banner_{{ i }}{%- endcapture -%}
+                {%- capture link -%}slider_banner_link_{{ i }}{%- endcapture -%}
+                {%- if section.settings[banner] != blank -%}
+                {%- assign img_baner = section.settings[banner] | img_url: 'master' -%}
+                {%- assign ar = section.settings[banner].aspect_ratio -%}
+                {%- else -%}
+                {%- assign img_baner = 'img255x353.png' | asset_url -%}
+                {%- assign ar = 0.7223796033994334 -%}
+                {%- endif -%}
+                {%- assign pt = 100 | divided_by: ar | append: '%' -%}
+                <div class="item">
+                  <a href="{{ section.settings[link] }}">
+                    <img data-src="{{ img_baner }}" alt="{{section.settings[banner].alt}}" style="padding-top: {{pt}};"/>
+                  </a>
+                </div>
+                {%- endfor -%}
+              </div>
+            </div>
+          </div>
+          {%- endif -%}
+          {%- if section.settings.block_subscribe_enable != blank -%}
+          <div class="block block-subscribe home-sidebar-block block-{{ section.id }}">
+            <div class="block-title">
+              <strong>
+                <span>
+                  {%- if settings.language_enable -%}
+                  <span class="lang1">{{ section.settings.block_subscribe_title | split: '|' | first }}</span>
+                  <span class="lang2">{{ section.settings.block_subscribe_title | split: '|' | last }}</span>
+                  {%- else -%}
+                  {{ section.settings.block_subscribe_title | split: '|' | first }}
+                  {%- endif -%}
+                </span>
+              </strong>
+            </div>
+            <div class="block-content">
+              <p>
+                {%- if settings.language_enable -%}
+                <span class="lang1">{{ section.settings.block_subscribe_content | split: '[lang2]' | first }}</span>
+                <span class="lang2">{{ section.settings.block_subscribe_content | split: '[lang2]' | last }}</span>
+                {%- else -%}
+                {{ section.settings.block_subscribe_content | split: '[lang2]' | first }}
+                {%- endif -%}
+              </p>
+              <div class="block_subscribe_form">
+                {%- if settings.newsletter_form_action != blank -%}
+                {%- assign form_action = settings.newsletter_form_action -%}
+                {%- else -%}
+                {%- assign form_action = '#' -%}
+                {%- endif -%}
+                <form action="{{ form_action }}" method="post" target="_blank" name="mc-embedded-subscribe-form">
+                  <div class="input-group">
+                    <input id="mc-email" type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="EMAIL" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}">
+                    <button type="submit" class="btn-button" name="subscribe" {% if settings.language_enable %}data-translate="general.newsletter_form.go"{% endif %}>{{ 'general.newsletter_form.go' | t }}</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          {%- endif -%}
+          {%- if section.settings.testimonials_enable != blank -%}
+          <h3 class="title-widget">
+            {%- if settings.language_enable -%}
+            <span class="lang1">{{ section.settings.testimonials_title | split: '|' | first }}</span>
+            <span class="lang2">{{ section.settings.testimonials_title | split: '|' | last }}</span>
+            {%- else -%}
+            {{ section.settings.testimonials_title | split: '|' | first }}
+            {%- endif -%}
+          </h3>
+          <div class="testimonials testimonials-{{ section.id }}">
+            <div class="owl-banner">
+              <div class="data-carousel"
+                   data-items="1"
+                   data-auto=""
+                   data-paging="true"
+                   data-nav="false"
+                   data-prev=''
+                   data-margin="0"
+                   data-next='' style="display: none;"></div>
+              <div class="owl-carousel carousel-init">
+                {%- for i in (1..2) -%}
+                {%- capture testimonials_blockquote -%}testimonials_blockquote_{{ i }}{%- endcapture -%}
+                {%- capture testimonials_image -%}testimonials_image_{{ i }}{%- endcapture -%}
+                {%- capture testimonials_author -%}testimonials_author_{{ i }}{%- endcapture -%}
+                {%- if testimonials_blockquote -%}
+                <div class="item">
+                  {%- if section.settings.move_author != blank -%}
+                  <div class="testimonial-author author_new">
+                    <div class="img-thumbnail img-thumbnail-small">
+                      {%- if section.settings[testimonials_image] != blank -%}
+                      {%- assign img_url = section.settings[testimonials_image] | img_url: 'master' -%}
+                      {%- else -%}
+                      {%- assign img_url = 'img60x60.png' | asset_url -%}
+                      {%- endif -%}
+                      <img width="60" height="60" data-src="{{ img_url }}" alt="{{section.settings[testimonials_image].alt}}">
+                    </div>
+                    {%- if settings.language_enable -%}
+                    <p class="lang1">{{ section.settings[testimonials_author] | split: '[lang2]' | first }}</p>
+                    <p class="lang2">{{ section.settings[testimonials_author] | split: '[lang2]' | last }}</p>
+                    {%- else -%}
+                    {{ section.settings[testimonials_author] | split: '[lang2]' | first }}
+                    {%- endif -%}
+                  </div>
+                  {%- endif -%}
+                  <blockquote>
+                    {%- if settings.language_enable -%}
+                    <p class="lang1">{{ section.settings[testimonials_blockquote] | split: '[lang2]' | first }}</p>
+                    <p class="lang2">{{ section.settings[testimonials_blockquote] | split: '[lang2]' | last }}</p>
+                    {%- else -%}
+                    {{ section.settings[testimonials_blockquote] | split: '[lang2]' | first }}
+                    {%- endif -%}
+                  </blockquote>
+                  <div class="testimonial-arrow-down"></div>
+                  {%- if section.settings.move_author == blank -%}
+                  <div class="testimonial-author author_last">
+                    <div class="img-thumbnail img-thumbnail-small">
+                      {%- if section.settings[testimonials_image] != blank -%}
+                      {%- assign img_url = section.settings[testimonials_image] | img_url: 'master' -%}
+                      {%- else -%}
+                      {%- assign img_url = 'img60x60.png' | asset_url -%}
+                      {%- endif -%}
+                      <img width="60" height="60" data-src="{{ img_url }}" alt="{{section.settings[testimonials_image].alt}}">
+                    </div>
+                    {%- if settings.language_enable -%}
+                    <p class="lang1">{{ section.settings[testimonials_author] | split: '[lang2]' | first }}</p>
+                    <p class="lang2">{{ section.settings[testimonials_author] | split: '[lang2]' | last }}</p>
+                    {%- else -%}
+                    {{ section.settings[testimonials_author] | split: '[lang2]' | first }}
+                    {%- endif -%}
+                  </div>
+                  {%- endif -%}
+                </div>
+                {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </div>
+          </div>
+          {%- endif -%}
+          {%- if section.settings.latest_news_enable != blank -%}
+          <div class="blog-slidebar blog_article">
+            <h3 class="title-widget" style="margin-bottom: -15px!important;margin-top: 20px;">
+              {%- if settings.language_enable -%}
+              <span class="lang1">{{ section.settings.latest_news_title | split: '|' | first }}</span>
+              <span class="lang2">{{ section.settings.latest_news_title | split: '|' | last }}</span>
+              {%- else -%}
+              {{ section.settings.latest_news_title | split: '|' | first }}
+              {%- endif -%}
+            </h3>
+            {%- assign blog = blogs[section.settings.blog] -%}
+            {%- unless blog.empty? -%}
+            <div class="latest_news owl-top-narrow">
+              <div class="recent-posts">
+                <div class="data-carousel"
+                     data-auto="{{ section.settings.blog_autoplay }}"
+                     data-items="{{ section.settings.blog_column }}"
+                     data-1200="{{ section.settings.blog_column }}"
+                     data-992="1"
+                     data-768="1"
+                     data-640="1"
+                     data-480="1"
+                     data-320="1"
+                     data-paging="{{ section.settings.blog_show_paging }}"
+                     data-nav="{{ section.settings.blog_show_nav }}"
+                     data-margin="{{ section.settings.blog_item_margin }}"
+                     data-prev='{{ section.settings.blog_nav_prev }}' 
+                     data-next='{{ section.settings.blog_nav_next }}' style="display: none;"></div>
+                <div class="owl-carousel carousel-init">
+                  {%- for article in blog.articles limit:section.settings.post_limit -%}
+                  <div class="item">
+                    <div class="row">
+                      <div class="col-md-5">
+                        {%- if section.settings.enable_image_thumb != blank -%}
+                        <div class="post-image">
+                          {%- if article.image -%}
+                          <a href="{{ article.url }}" class="article-image">
+                            <img data-src="{{ article | img_url: '300x' }}" />
+                          </a>
+                          {%- endif -%}
+                        </div>
+                        {%- endif -%}
+                      </div>
+                      <div class="col-md-7">
+                        {%- if section.settings.post_date_type == '2' -%}
+                        <div class="post-date post_date_new">
+                          <span class="long-date">{{ article.published_at | date: '%b %d, %Y' }}</span>
+                        </div>
+                        {%- else -%}
+                        <div class="post-date post_data_old">
+                          <span class="day">{{ article.published_at | date: '%d' }}</span>
+                          <span class="month">{{ article.published_at | date: '%b' }}</span>
+                        </div>
+                        {%- endif -%}
+                        <div class="postTitle">
+                          <h2>
+                            <a href="{{ article.url }}">
+                              {%- if settings.language_enable -%}
+                              <span class="lang1">{{ article.title | split: '|' | first }}</span>
+                              <span class="lang2">{{ article.title | split: '|' | last }}</span>
+                              {%- else -%}
+                              {{ article.title | split: '|' | first }}
+                              {%- endif -%}
+                            </a>
+                          </h2>
+                        </div>
+                        <div class="postContent">
+                          {%- if settings.language_enable -%}
+                          <span class="lang1">{{ article.content | strip_html | split: '[lang2]' | first | truncatewords: 20}}</span>
+                          <span class="lang2">{{ article.content | strip_html | split: '[lang2]' | last | truncatewords: 20}}</span>
+                          {%- else -%}
+                          {{ article.content |strip_html | split: '[lang2]' | first | truncatewords: 20}}
+                          {%- endif -%}
+                        </div>
+                        <a class="readmore" href="{{ article.url }}" {% if settings.language_enable %}data-translate="blogs.article.read_more"{% endif %}>{{ 'blogs.article.read_more' | t }}</a>
+                      </div>
+                    </div>
+                  </div>
+                  {%- endfor -%}
+                </div>
+              </div>
+            </div>
+            {%- endunless -%}
+          </div>
+          {%- endif -%}
+        </div>
+        <div class="col-lg-9" style="padding:0 10px;">
+          {%- if section.settings.home_banner_enable != blank -%}
+          <div class="single-images">
+            <div class="row">
+              <div class="col-md-4">
+                <a href="{{ section.settings.home_banner_link_1 }}" class="image-link border-radius">
+                  {%- if section.settings.home_banner_image_1 != blank -%}
+                  {%- assign img_baner = section.settings.home_banner_image_1 | img_url: '270x200' -%}
+                  {%- else -%}
+                  {%- assign img_baner = 'img269x199.png' | asset_url -%}
+                  {%- endif -%}
+                  <img data-src="{{ img_baner }}" alt="{{section.settings.home_banner_image_1.alt}}" width="270" height="200"/>
+                </a>
+              </div>
+              <div class="col-md-4" style="padding-left:10px;padding-right:10px;">
+                <a href="{{ section.settings.home_banner_link_2 }}" class="image-link border-radius">
+                  {%- if section.settings.home_banner_image_2 != blank -%}
+                  {%- assign img_baner = section.settings.home_banner_image_2 | img_url: '270x200' -%}
+                  {%- else -%}
+                  {%- assign img_baner = 'img269x199.png' | asset_url -%}
+                  {%- endif -%}
+                  <img data-src="{{ img_baner }}" alt="{{section.settings.home_banner_image_2.alt}}" width="270" height="200"/>
+                </a>
+              </div>
+              <div class="col-md-4" style="padding-left:10px;padding-right:10px;">
+                <a href="{{ section.settings.home_banner_link_3 }}" class="image-link border-radius">
+                  {%- if section.settings.home_banner_image_3 != blank -%}
+                  {%- assign img_baner = section.settings.home_banner_image_3 | img_url: '270x200' -%}
+                  {%- else -%}
+                  {%- assign img_baner = 'img269x199.png' | asset_url -%}
+                  {%- endif -%}
+                  <img data-src="{{ img_baner }}" alt="{{section.settings.home_banner_image_3.alt}}" width="270" height="200"/>
+                </a>
+              </div>
+            </div>
+          </div>
+          {%- endif -%}
+          <div class="main-html">
+            {%- if settings.language_enable -%}
+            <div class="lang1">
+              {%- assign content_lg1 = section.settings.html | split: '[lang2]' | first -%}
+              {% include 'shortcode' load: content_lg1 %}
+            </div>
+            <div class="lang2">
+              {%- assign content_lg2 = section.settings.html | split: '[lang2]' | last -%}
+              {% include 'shortcode' load: content_lg2 %} 
+            </div>
+            {%- else -%}
+            {%- assign content_lg = section.settings.html | split: '[lang2]' | first -%}
+            {% include 'shortcode' load: content_lg %}
+            {%- endif -%}
+          </div>
+          {%- if section.settings.shop_features_enable != blank -%}
+          <div class="shop-features">
+            <h2 class="shop-features-title">
+              <span class="shop-features-title-content">
+                {%- if settings.language_enable -%}
+                <span class="lang1">{{ section.settings.shop_features_title | split: '|' | first }}</span>
+                <span class="lang2">{{ section.settings.shop_features_title | split: '|' | last }}</span>
+                {%- else -%}
+                {{ section.settings.shop_features_title | split: '|' | first }}
+                {%- endif -%}
+              </span>
+            </h2>
+            <div class="row">
+              <div class="col-md-4">
+                <span>
+                  {%- if settings.language_enable -%}
+                  <span class="lang1">{{ section.settings.shop_features_content_1 | split: '[lang2]' | first }}</span>
+                  <span class="lang2">{{ section.settings.shop_features_content_1 | split: '[lang2]' | last }}</span>
+                  {%- else -%}
+                  {{ section.settings.shop_features_content_1 | split: '[lang2]' | first }}
+                  {%- endif -%}
+                </span>
+              </div>
+              <div class="col-md-4">
+                <span>
+                  {%- if settings.language_enable -%}
+                  <span class="lang1">{{ section.settings.shop_features_content_2 | split: '[lang2]' | first }}</span>
+                  <span class="lang2">{{ section.settings.shop_features_content_2 | split: '[lang2]' | last }}</span>
+                  {%- else -%}
+                  {{ section.settings.shop_features_content_2 | split: '[lang2]' | first }}
+                  {%- endif -%}
+                </span>
+              </div>
+              <div class="col-md-4">
+                <span>
+                  {%- if settings.language_enable -%}
+                  <span class="lang1">{{ section.settings.shop_features_content_3 | split: '[lang2]' | first }}</span>
+                  <span class="lang2">{{ section.settings.shop_features_content_3 | split: '[lang2]' | last }}</span>
+                  {%- else -%}
+                  {{ section.settings.shop_features_content_3 | split: '[lang2]' | first }}
+                  {%- endif -%}
+                </span>
+              </div>
+            </div>
+          </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Main Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Section margin top",
+      "info": "40px"
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Section margin bottom",
+      "info": "40px"
+    },
+    {
+      "type": "text",
+      "id": "section_padding",
+      "label": "Section padding",
+      "info": "Set padding for section top-right-bottom-left (ex: 0 0 10px 0)"
+    },
+    {
+      "type": "header",
+      "content": "Color"
+    },
+    {
+      "type":"color",
+      "id": "border_top_block_subscribe",
+      "label": "Border Top Block Subscribe Color",
+      "default":"#0083C1"
+    },
+    {
+      "type": "color",
+      "id": "bg_block_subscribe",
+      "label": "Background Block Subcribe Color",
+      "default": "#fbfbfb"
+    },
+    {
+      "type": "color",
+      "id": "title_block_subscribe",
+      "label": "Title Block Subscribe",
+      "default": "#313131"
+    },
+    {
+      "type": "color",
+      "id": "text_content_block_subscribe",
+      "label": "Text Content Block Subscribe Color",
+      "default": "#777"
+    },
+    {
+      "type": "color",
+      "id": "bg_blockquote_testimonials",
+      "label": "Background Block Quocte Testimonials Color",
+      "default": "#0083C1"
+    },
+    {
+      "type": "color",
+      "id": "text_content_block_testimonials",
+      "label": "Text Content Block Testimonials",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "title_blog_color",
+      "label": "Title Blog Color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "description_blog_color",
+      "label": "Description Blog Color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "post_day_color",
+      "label": "Post Day Color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "post_day_bg_color",
+      "label": "Post Day Background Color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "post_month_color",
+      "label": "Post Month Color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "post_month_bg_color",
+      "label": "Post Month Background Color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "read_more_blog_color",
+      "label": "Read More Blog Color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "read_more_blog_hover_color",
+      "label": "Read More Blog Hover Color",
+      "default": "#000"
+    },
+    {
+      "type":"header",
+      "content":"Home Sidebar"
+    },
+    {
+      "type": "checkbox",
+      "id": "home_slider_banner_enable",
+      "label": "Home Slider Banner Enable",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "slider_banner_1",
+      "label": "Slider Banner 1"
+    },
+    {
+      "type": "url",
+      "id": "slider_banner_link_1",
+      "label": "Slide link 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "slider_banner_2",
+      "label": "Slider Banner 2"
+    },
+    {
+      "type": "url",
+      "id": "slider_banner_link_2",
+      "label": "Slide link 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "slider_banner_3",
+      "label": "Slider Banner 3"
+    },
+    {
+      "type": "url",
+      "id": "slider_banner_link_3",
+      "label": "Slide link 3"
+    },
+    {
+      "type":"header",
+      "content":"Block Subscribe"
+    },
+    {
+      "type": "checkbox",
+      "id": "block_subscribe_enable",
+      "label": "Block Subscribe Enable",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "block_subscribe_title",
+      "label": "Block Subscribe Ttitle",
+      "default": "Be the First to Know"
+    },
+    {
+      "type": "textarea",
+      "id": "block_subscribe_content",
+      "label": "Block Subscribe Content",
+      "default":"Keep up on our always evolving product features and technology.<br>Enter your e-mail and subscribe to our newsletter."
+    },
+    {
+      "type":"header",
+      "content":"Testimonials"
+    },
+    {
+      "type": "checkbox",
+      "id": "testimonials_enable",
+      "label": "Enable?",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "move_author",
+      "label": "Move Author",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "testimonials_title",
+      "label": "Testimonials Title",
+      "default": "<strong>Testimonials</strong>"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonials_blockquote_1",
+      "label": "Testimonials Block 1",
+      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est."
+    },
+    {
+      "type": "image_picker",
+      "id": "testimonials_image_1",
+      "label": "Testimonials Image 1"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonials_author_1",
+      "label": "Testimonials Author 1",
+      "default": "<strong>John Smith</strong><span>CEO &amp; Founder - Okler</span>"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonials_blockquote_2",
+      "label": "Testimonials Block 2",
+      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est."
+    },
+    {
+      "type": "image_picker",
+      "id": "testimonials_image_2",
+      "label": "Testimonials Image 2"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonials_author_2",
+      "label": "Testimonials Author 2",
+      "default": "<strong>John Smith</strong><span>CEO &amp; Founder - Okler</span>"
+    },
+    {
+      "type":"header",
+      "content":"Latest News"
+    },
+    {
+      "type": "checkbox",
+      "id": "latest_news_enable",
+      "label": "Enable?",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_image_thumb",
+      "label": "Enable Image Thumbnail?",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "post_date_type",
+      "label": "Post Date Type",
+      "options": [
+        {
+          "value": "1",
+          "label": "Type 1"
+        },
+        {
+          "value": "2",
+          "label": "Type 2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "text",
+      "id": "latest_news_title",
+      "label": "Latest News Ttitle",
+      "default": "From The Bog"
+    },
+    {
+      "id": "blog",
+      "type": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "text",
+      "id": "post_limit",
+      "label": "Number of article to show",
+      "default": "4"
+    },
+    {
+      "type": "text",
+      "id": "blog_column",
+      "label": "Columns",
+      "default": "1"
+    },
+    {
+      "type": "text",
+      "id": "blog_autoplay",
+      "label": "Slideshow",
+      "info": "Change to any integrer for example 5000 to play every 5 seconds. Leave empty to disable autoplay."
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_paging",
+      "label": "Show Paging"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_nav",
+      "label": "Show Navigation"
+    },
+    {
+      "type": "text",
+      "id": "blog_nav_prev",
+      "label": "Prev Navigation",
+      "default": "<i class=\"icon-chevron-left\"></i>"
+    },
+    {
+      "type": "text",
+      "id": "blog_nav_next",
+      "label": "Next Navigation",
+      "default": "<i class=\"icon-chevron-right\"></i>"
+    },
+    {
+      "type": "text",
+      "id": "blog_item_margin",
+      "label": "Margin",
+      "info": "Margin each item.",
+      "default": "30"
+    },
+    {
+      "type":"header",
+      "content":"Home Banner"
+    },
+    {
+      "type": "checkbox",
+      "id": "home_banner_enable",
+      "label": "Enable?",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "home_banner_image_1",
+      "label": "Home Banner Image 1"
+    },
+    {
+      "type": "url",
+      "id": "home_banner_link_1",
+      "label": "Banner link 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "home_banner_image_2",
+      "label": "Home Banner Image 2"
+    },
+    {
+      "type": "url",
+      "id": "home_banner_link_2",
+      "label": "Banner link 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "home_banner_image_3",
+      "label": "Home Banner Image 3"
+    },
+    {
+      "type": "url",
+      "id": "home_banner_link_3",
+      "label": "Banner link 3"
+    },
+    {
+      "type":"header",
+      "content":"Html and shortcode"
+    },
+    {
+      "type": "html",
+      "id": "html",
+      "label": "Html code or product shortcode" 
+    },  
+    {
+      "type":"header",
+      "content":"Shop Features"
+    },
+    {
+      "type": "checkbox",
+      "id": "shop_features_enable",
+      "label": "Enable?",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "shop_features_title",
+      "label": "Shop Features Title",
+      "default": "WHY SHOP WITH US?"
+    },
+    {
+      "type": "textarea",
+      "id": "shop_features_content_1",
+      "label": "Shop Features Content 1",
+      "default": "<i class='icon-star'></i><h3>DEDICATED SERVICE</h3><p>Consult our specialists for help with an order, customization, or design advice.</p><a href='#'>Get in Touch &gt;</a>"
+    },
+    {
+      "type": "textarea",
+      "id": "shop_features_content_2",
+      "label": "Shop Features Content 2",
+      "default": "<i class='icon-reply'></i><h3>FREE RETURNS</h3><p>We stand behind our goods and services and want you to be satisfied with them.</p><a href='#'>Returns Policy &gt;</a>"
+    },
+    {
+      "type": "textarea",
+      "id": "shop_features_content_3",
+      "label": "Shop Features Content 3",
+      "default": "<i class='icon-paper-plane'></i><h3>INTERNATIONAL SHIPPING</h3><p>Currently over 50 countries qualify for express international shipping.</p><a href='#'>Learn More &gt;</a>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Main Section",
+      "category": "Main Section"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

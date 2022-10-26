@@ -1,0 +1,150 @@
+<div data-section-id="{{ section.id }}" data-section-type="products-banner-section">
+  <div id="products-banner-{{ section.id }}" class="slideshow slideshow-content-collection" style="margin-top: {{section.settings.margin_top | remove: 'px' | append: 'px' }};margin-bottom: {{section.settings.margin_bottom | remove: 'px' | append: 'px' }};padding: {{section.settings.section_padding}};">
+    {%- if section.settings.background_image != blank -%}
+    {%- assign bg_url = section.settings.background_image | img_url: 'master' -%}
+    {%- else -%}
+    {%- assign bg_url = 'bg1900x1102.png' | asset_url -%}
+    {%- endif -%}
+    <div class="lazyload lazypreload" data-bg="{{ bg_url }}" style="background: 73% 0 no-repeat;background-size: cover;color: #3d3734;">
+      <div class="banner-content-18">
+        <div class="container" style="text-align: left;">
+          <div class="row">
+            <div class="col-lg-7">
+              <div class="text-content" style="display: inline-block;padding-left: 5%;">
+                {%- if settings.language_enable -%}
+                <div class="lang1">{{ section.settings.content1 | split: '[lang2]' | first }}</div>
+                <div class="lang2">{{ section.settings.content1 | split: '[lang2]' | last }}</div>
+                {%- else -%}
+                {{ section.settings.content1 | split: '[lang2]' | first }}
+                {%- endif -%}
+                {%- if settings.language_enable -%}
+                <div class="lang1">{{ section.settings.content2 | split: '[lang2]' | first }}</div>
+                <div class="lang2">{{ section.settings.content2 | split: '[lang2]' | last }}</div>
+                {%- else -%}
+                {{ section.settings.content2 | split: '[lang2]' | first }}
+                {%- endif -%}
+                {%- if settings.language_enable -%}
+                <div class="lang1">{{ section.settings.content3 | split: '[lang2]' | first }}</div>
+                <div class="lang2">{{ section.settings.content3 | split: '[lang2]' | last }}</div>
+                {%- else -%}
+                {{ section.settings.content3 | split: '[lang2]' | first }}
+                {%- endif -%}
+              </div>
+              <div class="owl-middle-outer-narrow" style="text-align: left;">
+                <p class="filter_title_type_2">
+                 <span class="title_line_content" style="width:215px;">
+                    {%- if settings.language_enable -%}
+                    <span class="lang1">{{ section.settings.collection_title | split: '[lang2]' | first }}</span>
+                    <span class="lang2">{{ section.settings.collection_title | split: '[lang2]' | last }}</span>
+                    {%- else -%}
+                    {{ section.settings.collection_title | split: '[lang2]' | first }}
+                    {%- endif -%}
+                  </span>
+                   <span class="title_line"></span>
+                </p>
+                <div class="html-code-wrapper"> 
+                  {%- if settings.language_enable -%}
+                  <div class="lang1">
+                    {%- assign content_lg1 = section.settings.html | split: '[lang2]' | first -%}
+                    {% include 'shortcode' load: content_lg1 %}
+                  </div>
+                  <div class="lang2">
+                    {%- assign content_lg2 = section.settings.html | split: '[lang2]' | last -%}
+                    {% include 'shortcode' load: content_lg2 %} 
+                  </div>
+                  {%- else -%}
+                  {%- assign content_lg = section.settings.html | split: '[lang2]' | first -%}
+                  {% include 'shortcode' load: content_lg %}
+                  {%- endif -%} 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Products Slider & Banner2",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Section margin top",
+      "info": "40px"
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Section margin bottom",
+      "info": "40px"
+    },
+    {
+      "type": "text",
+      "id": "section_padding",
+      "label": "Section padding",
+      "info": "Set padding for section top-right-bottom-left (ex: 0 0 10px 0)"
+    },
+    {
+      "type":"header",
+      "content":"Banner Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "html",
+      "id": "content1",
+      "label": "Banner Content 1",
+      "default": "<em style='font-style: normal; display: block;font-weight:600;'>NEW ARRIVALS</em>"
+    },
+    {
+      "type": "html",
+      "id": "content2",
+      "label": "Banner Content 2",
+      "default": "<h2 style='line-height: 1;font-weight:800;margin:0;color:#3d3734'>FASHION</h2>"
+    },
+    {
+      "type": "html",
+      "id": "content3",
+      "label": "Banner Content 3",
+      "default": "<p><span style='vertical-align: top;font-weight:300;'>UP TO <b style='font-weight:800;'>70% OFF</b> IN THE NEW COLLECTION</span></p><p><a href='#' class='btn btn-default' style='vertical-align: top; font-weight: 400;'>SHOP NOW</a></p>"
+    },
+    {
+      "type":"header",
+      "content":"Html and Shortcode Settings"
+    },
+    {
+      "type": "text",
+      "id": "collection_title",
+      "label": "Collection Title",
+      "default": "SELECTED <b>PRODUCTS</b>"
+    },
+    {
+      "type": "html",
+      "id": "html",
+      "label": "Content" 
+    } 
+  ],
+  "presets": [{
+    "name": "Product Slider With Banner 2",
+    "category": "Products",
+    "settings": {
+    }
+  }]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

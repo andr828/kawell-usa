@@ -1,0 +1,243 @@
+<!-- style sheets -->
+<style>
+.main-section-three.section-main .sidebar-section-main .home-side-menu-type2.block-{{ section.id }} h2{
+  color: {{ section.settings.title_sidebar_menu }};
+}
+.section-main .sidebar-section-main .home-side-menu-type2.block-{{ section.id }} .sidebar-content ul.nav-accordion a{
+  color: {{ section.settings.items_content_sidebar_menu }};
+}
+</style>
+<!-- end style sheets -->
+<div data-section-id="{{ section.id }}" data-section-type="main-block-section">
+  <div id="main-block-{{ section.id }}" class="main_section_three" style="margin-top: {{section.settings.margin_top | remove: 'px' | append: 'px' }};margin-bottom: {{section.settings.margin_bottom | remove: 'px' | append: 'px' }};padding: {{section.settings.section_padding}};">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-xl-2-4 sidebar-section-main">
+          {%- if section.settings.sidebar_menu_enable != blank -%}
+          <div class="home-side-menu-type2 block block-{{ section.id }} block-nav sidebar-cate-toogle" style="margin-bottom:20px;">
+            <h2>
+              <i class="icon-menu"></i>
+              <span>
+                {%- if settings.language_enable -%}
+                <span class="lang1">{{ section.settings.sidebar_menu_title | split: '|' | first }}</span>
+                <span class="lang2">{{ section.settings.sidebar_menu_title | split: '|' | last }}</span>
+                {%- else -%}
+                {{ section.settings.sidebar_menu_title | split: '|' | first }}
+                {%- endif -%}
+              </span>
+            </h2>
+            <div class="sidebar-content block-content">
+              {%- assign list = linklists[section.settings.sidebar_menu] -%}
+              <ul id="categories_nav" class="nav-accordion nav-categories">
+                {%- for link in list.links -%}
+                {%- assign child_list_handle = link.title | handleize -%}
+                {%- if linklists[child_list_handle].links != blank -%}
+                <li class="level0 level-top parent {% if forloop.index == list.links.size %}last{% endif %}">
+                  <a href="{{ link.url }}" class="level-top">
+                    <span>
+                      {%- if settings.language_enable -%}
+                      <span class="lang1">{{ link.title | split: '|' | first }}</span>
+                      <span class="lang2">{{ link.title | split: '|' | last }}</span>
+                      {%- else -%}
+                      {{ link.title | split: '|' | first }}
+                      {%- endif -%}
+                    </span>
+                  </a>
+                  <ul class="level0">
+                    {%- for childlink in linklists[child_list_handle].links -%}
+                    {%- assign grand_child_list_handle = childlink.title | handle -%}
+                    {%- if linklists[grand_child_list_handle].links != blank -%}
+                    <li class="level1 parent {% if forloop.index == linklists[child_list_handle].links.size %}last{% endif %}">
+                      <a href="{{ childlink.url }}">
+                        <span>
+                          {%- if settings.language_enable -%}
+                          <span class="lang1">{{ childlink.title | split: '|' | first }}</span>
+                          <span class="lang2">{{ childlink.title | split: '|' | last }}</span>
+                          {%- else -%}
+                          {{ childlink.title | split: '|' | first }}
+                          {%- endif -%}
+                        </span>
+                      </a>
+                      <ul class="level1">
+                        {%- for grand_child_link in linklists[grand_child_list_handle].links -%}
+                        <li class="level2 {% if forloop.index == linklists[grand_child_list_handle].links.size %}last{% endif %}">
+                          <a href="{{ grand_child_link.url }}" class="site-nav__link">
+                            {%- if settings.language_enable -%}
+                            <span class="lang1">{{ grand_child_link.title | split: '|' | first }}</span>
+                            <span class="lang2">{{ grand_child_link.title | split: '|' | last }}</span>
+                            {%- else -%}
+                            {{ grand_child_link.title | split: '|' | first }}
+                            {%- endif -%}
+                          </a>
+                        </li>
+                        {%- endfor -%}
+                      </ul>
+                    </li>
+                    {%- else -%}
+                    <li class="level1 {% if forloop.index == linklists[child_list_handle].links.size %}last{% endif %}">
+                      <a href="{{ childlink.url }}">
+                        <span>
+                          {%- if settings.language_enable -%}
+                          <span class="lang1">{{ childlink.title | split: '|' | first }}</span>
+                          <span class="lang2">{{ childlink.title | split: '|' | last }}</span>
+                          {%- else -%}
+                          {{ childlink.title | split: '|' | first }}
+                          {%- endif -%}
+                        </span>
+                      </a>
+                    </li>
+                    {%- endif -%}
+                    {%- endfor -%}
+                  </ul>
+                </li>
+                {%- else -%}
+                <li class="level0 level-top {% if forloop.index == list.links.size %}last{% endif %}">
+                  <a href="{{ link.url }}" class="level-top">
+                    {%- if settings.language_enable -%}
+                    <span class="lang1">{{ link.title | split: '|' | first }}</span>
+                    <span class="lang2">{{ link.title | split: '|' | last }}</span>
+                    {%- else -%}
+                    {{ link.title | split: '|' | first }}
+                    {%- endif -%}
+                  </a>
+                </li>
+                {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </div>
+          </div>
+          {%- endif -%}
+          {%- if section.settings.html_enable != blank -%}
+          <div class="featured-box-2">
+            {%- if settings.language_enable -%}
+            <div class="lang1">{{ section.settings.html_content_1 | split: '[lang2]' | first }}</div>
+            <div class="lang2">{{ section.settings.html_content_1 | split: '[lang2]' | last }}</div>
+            {%- else -%}
+            {{ section.settings.html_content_1 | split: '[lang2]' | first }}
+            {%- endif -%}
+          </div>
+          <div class="featured-box-2">
+            {%- if settings.language_enable -%}
+            <div class="lang1">{{ section.settings.html_content_2 | split: '[lang2]' | first }}</div>
+            <div class="lang2">{{ section.settings.html_content_2 | split: '[lang2]' | last }}</div>
+            {%- else -%}
+            {{ section.settings.html_content_2 | split: '[lang2]' | first }}
+            {%- endif -%}
+          </div>
+          {%- endif -%}
+        </div>
+        <div class="col-lg-9 col-xl-9-6">
+          <div class="html-code-wrapper"> 
+            {%- if settings.language_enable -%}
+              <div class="lang1">
+                {%- assign content_lg1 = section.settings.html | split: '[lang2]' | first -%}
+                {% include 'shortcode' load: content_lg1 %}
+              </div>
+              <div class="lang2">
+                {%- assign content_lg2 = section.settings.html | split: '[lang2]' | last -%}
+                {% include 'shortcode' load: content_lg2 %} 
+              </div>
+              {%- else -%}
+              {%- assign content_lg = section.settings.html | split: '[lang2]' | first -%}
+                {% include 'shortcode' load: content_lg %}
+              {%- endif -%} 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Section Main 3",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Section margin top",
+      "info": "40px"
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Section margin bottom",
+      "info": "40px"
+    },
+    {
+      "type": "text",
+      "id": "section_padding",
+      "label": "Section padding",
+      "info": "Set padding for section top-right-bottom-left (ex: 0 0 10px 0)"
+    },
+    {
+      "type": "header",
+      "content": "Sidebar Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "sidebar_menu_enable",
+      "label": "Enable?",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sidebar_menu_title",
+      "label": "Sidebar Menu Title",
+      "default": "MAIN MENU"
+    },
+    {
+      "type": "link_list",
+      "id": "sidebar_menu",
+      "label": "Select Menu",
+    "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Html Block"
+    },
+    {
+      "type": "checkbox",
+      "id": "html_enable",
+      "label": "Enable?",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "html_content_1",
+      "label": "Content 1",
+      "default": "<h3><i class='icon-star'></i> DEDICATED SERVICE</h3><p>Consult our specialists for help with an order, customization, or design advice.</p><a href='#'>Get in Touch &gt;</a>"
+    },
+    {
+      "type": "textarea",
+      "id": "html_content_2",
+      "label": "Content 2",
+      "default": "<h3><i class='icon-reply'></i> FREE RETURNS</h3><p>We stand behind our goods and services and want you to be satisfied with them.</p><a href='#'>Returns Policy &gt;</a>"
+    },
+    {
+      "type": "header",
+      "content": "Main Section"
+    },
+    {
+      "type": "html",
+      "id": "html",
+      "label": "Html and shortcode" 
+    } 
+  ],
+  "presets": [
+    {
+      "name": "Main Section 3",
+      "category": "Main Section"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

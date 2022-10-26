@@ -1,0 +1,109 @@
+{%- capture blog %}{% include 'shortcode-render' render:'blog' default: 'news' -%}{%- endcapture -%}    
+{%- capture limit %}{% include 'shortcode-render' render:'limit' default: '4' -%}{%- endcapture -%}   
+{%- capture ratio %}{% include 'shortcode-render' render:'aspect_ratio' default: 'true' -%}{%- endcapture -%}  
+{%- capture img_size %}{% include 'shortcode-render' render:'img_size' default: '400x400' -%}{%- endcapture -%}  
+{%- capture autoplay %}{% include 'shortcode-render' render:'autoplay' default: '5000' -%}{%- endcapture -%}  
+{%- capture item_margin %}{% include 'shortcode-render' render:'item_margin' default: '10' -%}{%- endcapture -%}
+{%- capture nav %}{% include 'shortcode-render' render:'show_nav' default: 'false' -%}{%- endcapture -%}  
+{%- capture paging %}{% include 'shortcode-render' render:'show_paging' default: 'false' -%}{%- endcapture -%}   
+{%- capture desktop %}{% include 'shortcode-render' render:'desktop' default: '3' -%}{%- endcapture -%}  
+{%- capture tablet %}{% include 'shortcode-render' render:'tablet' default: '2' -%}{%- endcapture -%}  
+{%- capture mobile %}{% include 'shortcode-render' render:'mobile' default: '1' -%}{%- endcapture -%}
+{%- assign aspect_ratio = false  -%} 
+{%- if ratio == 'true' -%}{%- assign aspect_ratio = true -%}{%- endif -%}
+{%- assign show_nav = false  -%} 
+{%- if nav == 'true' -%}{%- assign show_nav = true -%}{%- endif -%}
+{%- assign show_paging = false  -%} 
+{%- if paging == 'true' -%}{%- assign show_paging = true -%}{%- endif -%}
+{%- assign paginate_index = limit | plus: 0  -%}
+<div class="blog_article"> 
+  {%- assign blog = blogs[blog] -%}
+  {%- unless blog.empty? -%} 
+  {%- assign img_size = img_size -%}
+  {%- case aspect_ratio -%}
+  {%- when true -%}
+  {%- assign image_width = img_size | split: 'x' | first -%}
+  {%- assign image_height = '' -%}
+  {%- assign ar = 1 -%}
+  {%- else -%}
+  {%- assign image_width = img_size | split: 'x' | first -%}
+  {%- assign image_height = img_size | split: 'x' | last -%}
+  {%- if image_width < image_height -%}
+  {%- assign ar = image_width | divided_by: 1 -%}
+  {%- else -%}
+  {%- assign ar = image_width | divided_by: image_height -%}
+  {%- endif -%}
+  {%- endcase -%}
+  <div class="latest_news owl-top-narrow new-arrow-carousel">
+    <div class="recent-posts">
+      <div class="data-carousel"
+           data-auto="{{ autoplay }}"
+           data-items="{{ desktop }}"
+           data-1200="{{ desktop }}"
+           data-992="{{ tablet }}"
+           data-768="{{ tablet }}"
+           data-640="{{ mobile }}"
+           data-480="{{ mobile }}"
+           data-320="{{ mobile }}"
+           data-paging="{{ show_paging }}"
+           data-nav="{{ show_nav }}"
+           data-margin="{{ item_margin }}"
+           data-prev='' 
+           data-next='' style="display: none;"></div>
+      <div class="owl-carousel carousel-init owl-carousel-lazy middle nav-pos-outside nav-style-4 show-nav-hover">
+        {%- for article in blog.articles limit:paginate_index -%} 
+        <div class="item blog_post_type_2"> 
+          <div class="row">
+            <div class="col-md-8 col-lg-5">
+              <div class="post-image">
+                {%- if article.image -%} 
+                {%- capture image_size -%}{{ image_width }}x{{ image_height }}{%- endcapture -%} 
+                {%- assign pt = 100 | divided_by: ar | append: '%' -%} 
+                <a href="{{ article.url }}" class="article-image image-link">
+                  <img data-src="{{ article | img_url: image_size, crop: 'center' }}" style="padding-top: {{pt}};"/>
+                </a>
+                {%- endif -%} 
+                <div class="post-date background-color-primary">
+                  <span class="day">{{ article.published_at | date: '%d' }}</span>
+                  <span class="month">{{ article.published_at | date: '%b' }}</span>
+                </div> 
+              </div>
+            </div>
+            <div class="col-md-12 col-lg-7">   
+              <div class="post-content">
+                <div class="meta-cats m-l-lg">
+                  <a href="{{blog.url}}">{{blog.title}}</a>
+                </div>
+                <div class="postTitle">
+                  <h2 style="min-height: auto;">
+                    <a href="{{ article.url }}">
+                      {%- if settings.language_enable -%}
+                      <span class="lang1">{{ article.title | split: '|' | first }}</span>
+                      <span class="lang2">{{ article.title | split: '|' | last }}</span>
+                      {%- else -%}
+                      {{ article.title | split: '|' | first }}
+                      {%- endif -%}
+                    </a>
+                  </h2>
+                </div>
+                <div class="postContent">
+                  {%- if settings.language_enable -%}
+                  <span class="lang1">{{ article.content | strip_html | split: '[lang2]' | first | truncatewords: 15}}</span>
+                  <span class="lang2">{{ article.content | strip_html | split: '[lang2]' | last | truncatewords: 15}}</span>
+                  {%- else -%}
+                  {{ article.content |strip_html | split: '[lang2]' | first | truncatewords: 15}}
+                  {%- endif -%} 
+                </div> 
+                <div class="btn-readmore">
+                  <a class="readmore btn btn-default btn-borders btn-primary " href="{{ article.url }}" {% if settings.language_enable %}data-translate="blogs.article.read_more"{% endif %}>{{ 'blogs.article.read_more' | t }}</a>
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+  {%- endunless -%}
+</div> 

@@ -1,0 +1,52 @@
+{% comment %}
+<div class="site-logo">
+  <a href="/" class="logo porto-main-logo" rel="home">
+    {%- if settings.header_overlap != blank and template == 'index' -%}
+      {%- if settings.logo_overlap_svg != '' -%}
+        <img src="{{ settings.logo_overlap_svg | asset_url }}" style="max-width:{{settings.logo_width | remove: 'px' | append: 'px' }};" alt="{{ image.alt | default: shop.name }}"/>
+      {%- else -%}
+        {%- if settings.logo_overlap != blank -%}
+          <img src="{{ settings.logo_overlap | img_url: logo_size }}" alt="{{ image.alt | default: shop.name }}"/>
+        {%- else -%}
+          {{shop.name}}
+        {%- endif -%}
+      {%- endif -%}
+    {%- else -%}
+      {%- if settings.logo_svg != '' -%}
+      <img src="{{ settings.logo_svg | asset_url }}" style="max-width:{{settings.logo_width | remove: 'px' | append: 'px' }};" alt="{{ image.alt | default: shop.name }}"/>
+      {%- else -%}
+        {%- if settings.logo != blank -%}
+          <img src="{{ settings.logo | img_url: logo_size }}" alt="{{ image.alt | default: shop.name }}"/>
+        {%- else -%}
+          {{shop.name}}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+  </a>
+</div>
+{% endcomment %}
+<div class="site-logo">
+  <a href="/" class="logo porto-main-logo" rel="home">
+    {%- if settings.header_overlap != blank and template == 'index' -%}
+      {%- if settings.logo_overlap_svg != '' -%}
+        <img src="{{ 'https://cdn.shopify.com/s/files/1/0417/0193/3209/files/Kawell-USA-Logo.png?v=1663791964' }}" style="max-width:{{settings.logo_width | remove: 'px' | append: 'px' }};" alt="{{ image.alt | default: shop.name }}"/>
+      {%- else -%}
+        {%- if settings.logo_overlap != blank -%}
+          <img src="{{ 'https://cdn.shopify.com/s/files/1/0417/0193/3209/files/Kawell-USA-Logo.png?v=1663791964' }}" alt="{{ image.alt | default: shop.name }}"/>
+        {%- else -%}
+          {{shop.name}}
+        {%- endif -%}
+      {%- endif -%}
+    {%- else -%}
+      {%- if settings.logo_svg != '' -%}
+      <img src="{{ 'https://cdn.shopify.com/s/files/1/0417/0193/3209/files/Kawell-USA-Logo.png?v=1663791964' }}" style="max-width:{{settings.logo_width | remove: 'px' | append: 'px' }};" alt="{{ image.alt | default: shop.name }}"/>
+      {%- else -%}
+        {%- if settings.logo != blank -%}
+          <img src="{{ 'https://cdn.shopify.com/s/files/1/0417/0193/3209/files/Kawell-USA-Logo.png?v=1663791964'  }}" alt="{{ image.alt | default: shop.name }}"/>
+        {%- else -%}
+          {{shop.name}}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+  </a>
+</div>

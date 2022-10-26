@@ -1,0 +1,1 @@
+!function(){var n=new XMLHttpRequest;n.open("POST","/apps/smart-seo/brokenLinks/add?page_url="+window.location.pathname),n.onload=function(){n.status},n.send()}();

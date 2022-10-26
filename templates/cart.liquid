@@ -1,0 +1,36 @@
+{%- if settings.sidebar_move == blank -%}
+{% include 'breadcrumb' %}
+{%- endif -%} 
+<div class="container">
+  <div class="row">
+    {%- assign sidebar_class = 'col-lg-3' -%}
+    {%- if settings.sidebar_left_cart != blank -%}
+    {%- assign main_class = 'col-lg-9' -%}
+    {%- endif -%} 
+    {%- if settings.sidebar_right_cart != blank -%}
+    {%- assign main_class = 'col-lg-9' -%} 
+    {%- endif -%}
+    {%- if settings.sidebar_left_cart != blank and settings.sidebar_right_cart != blank -%}
+    {%- assign main_class = 'col-lg-6' -%} 
+    {%- endif -%}  
+    {%- if settings.sidebar_left_cart == blank and settings.sidebar_right_cart == blank -%}
+    {%- assign main_class = 'col-lg-12' -%} 
+    {%- endif -%} 
+    <div class="{{main_class}} main-content main-cart">
+      {%- if settings.sidebar_move != blank -%}
+      {% include 'breadcrumb' %}
+      {%- endif -%}  
+      {% section 'cart-template' %}
+    </div>
+    {% if settings.sidebar_left_cart != blank %}
+    <div class="{{sidebar_class}} sidebar col-left">
+      {% section 'sidebar-left' %}
+    </div>
+    {% endif %}  
+    {% if settings.sidebar_right_cart != blank %}
+    <div class="{{sidebar_class}} sidebar-right col-right">
+      {% section 'sidebar-right' %}
+    </div>
+    {% endif %} 
+  </div>
+</div> 

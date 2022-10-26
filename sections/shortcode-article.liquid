@@ -1,0 +1,190 @@
+<div data-section-id="{{ section.id }}" data-section-type="instagram-section">
+  <div id="instagram-section-{{ section.id }}" class="article-section">  
+    <div style="position:relative;">
+      <h3>Code:</h3>
+      <code>
+        <!-- Shortcode product --> 
+        [article blog="{{section.settings.blog}}" limit="{{section.settings.limit}}" aspect_ratio="{{section.settings.aspect_ratio}}" img_size="{{section.settings.img_size}}" autoplay="{{section.settings.autoplay}}" show_nav="{{section.settings.show_nav}}" show_paging="{{section.settings.show_paging}}" item_margin="{{section.settings.item_margin}}" desktop="{{section.settings.item_desktop}}" tablet="{{section.settings.item_tablet}}" mobile="{{section.settings.item_mobile}}" ] 
+        <!-- / Shortcode product -->
+      </code>
+      <div class="blog_article"> 
+        {%- assign blog = blogs[section.settings.blog] -%}
+        {%- unless blog.empty? -%}
+        {%- assign aspect_ratio = section.settings.aspect_ratio -%}
+          {%- assign img_size = section.settings.img_size -%}
+          {%- case aspect_ratio -%}
+          {%- when true -%}
+            {%- assign image_width = img_size | split: 'x' | first -%}
+            {%- assign image_height = '' -%}
+            {%- assign ar = 1 -%}
+          {%- else -%}
+            {%- assign image_width = img_size | split: 'x' | first -%}
+            {%- assign image_height = img_size | split: 'x' | last -%}
+            {%- if image_width < image_height -%}
+              {%- assign ar = image_width | divided_by: 1 -%}
+            {%- else -%}
+              {%- assign ar = image_width | divided_by: image_height -%}
+            {%- endif -%}
+          {%- endcase -%}
+        <div class="latest_news owl-top-narrow new-arrow-carousel">
+          <div class="recent-posts">
+            <div class="data-carousel"
+                 data-auto="{{ section.settings.autoplay }}"
+                 data-items="{{ section.settings.item_desktop }}"
+                 data-1200="{{ section.settings.item_desktop }}"
+                 data-992="{{ section.settings.item_tablet }}"
+                 data-768="{{ section.settings.item_tablet }}"
+                 data-640="{{ section.settings.item_mobile }}"
+                 data-480="{{ section.settings.item_mobile }}"
+                 data-320="{{ section.settings.item_mobile }}"
+                 data-paging="{{ section.settings.show_paging }}"
+                 data-nav="{{ section.settings.show_nav }}"
+                 data-margin="{{ section.settings.item_margin }}"
+                 data-prev='' 
+                 data-next='' style="display: none;"></div>
+            <div class="owl-carousel carousel-init owl-carousel-lazy middle nav-pos-outside nav-style-4 show-nav-hover">
+              {%- for article in blog.articles limit:section.settings.limit -%} 
+              <div class="item blog_post_type_2"> 
+                <div class="row">
+                  <div class="col-md-8 col-lg-5">
+                    <div class="post-image">
+                      {%- if article.image -%} 
+                      {%- capture image_size -%}{{ image_width }}x{{ image_height }}{%- endcapture -%} 
+                      {%- assign pt = 100 | divided_by: ar | append: '%' -%} 
+                      <a href="{{ article.url }}" class="article-image image-link">
+                        <img data-src="{{ article | img_url: image_size, crop: 'center' }}" style="padding-top: {{pt}};"/>
+                      </a>
+                      {%- endif -%} 
+                      <div class="post-date background-color-primary">
+                        <span class="day">{{ article.published_at | date: '%d' }}</span>
+                        <span class="month">{{ article.published_at | date: '%b' }}</span>
+                      </div> 
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-lg-7">   
+                    <div class="post-content">
+                      <div class="meta-cats m-l-lg">
+                        <a href="{{blog.url}}">{{blog.title}}</a>
+                      </div>
+                      <div class="postTitle">
+                        <h2 style="min-height: auto;">
+                          <a href="{{ article.url }}">
+                            {%- if settings.language_enable -%}
+                            <span class="lang1">{{ article.title | split: '|' | first }}</span>
+                            <span class="lang2">{{ article.title | split: '|' | last }}</span>
+                            {%- else -%}
+                            {{ article.title | split: '|' | first }}
+                            {%- endif -%}
+                          </a>
+                        </h2>
+                      </div>
+                      <div class="postContent">
+                        {%- if settings.language_enable -%}
+                        <span class="lang1">{{ article.content | strip_html | split: '[lang2]' | first | truncatewords: 15}}</span>
+                        <span class="lang2">{{ article.content | strip_html | split: '[lang2]' | last | truncatewords: 15}}</span>
+                        {%- else -%}
+                        {{ article.content |strip_html | split: '[lang2]' | first | truncatewords: 15}}
+                        {%- endif -%} 
+                      </div> 
+                      <div class="btn-readmore">
+                        <a class="readmore btn btn-default btn-borders btn-primary " href="{{ article.url }}" {% if settings.language_enable %}data-translate="blogs.article.read_more"{% endif %}>{{ 'blogs.article.read_more' | t }}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+        {%- endunless -%}
+      </div> 
+    </div> 
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Blog Post",
+  "settings": [ 
+    {
+      "type": "header",
+      "content": "General Setting"
+    },  
+    {
+      "id": "blog",
+      "type": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "text",
+      "id": "limit",
+      "label": "Number of article to show",
+      "default": "4"
+    }, 
+    {
+      "type": "checkbox",
+      "id": "aspect_ratio",
+      "label": "Keep Image Aspect Ratio", 
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "img_size",
+      "label": "Image size(set width/height image, set sample format)",
+	  "default":"400x400"
+    },
+    {
+      "type":"header",
+      "content": "Slider Config"
+    }, 
+    {
+      "type": "text",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": "5000"
+    }, 
+    {
+      "type": "text",
+      "id": "item_desktop",
+      "label": "Item Show On Desktop",
+      "default": "3"
+    }, 
+    {
+      "type": "text",
+      "id": "item_tablet",
+      "label": "Item Show On Tablet",
+      "default": "2"
+    },
+    {
+      "type": "text",
+      "id": "item_mobile",
+      "label": "Item Show On Mobile",
+      "default": "1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_nav",
+      "label": "Show Navigation",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_paging",
+      "label": "Show Paging"
+    },
+    {
+      "type": "text",
+      "id": "item_margin",
+      "label": "Margin",
+      "info": "Margin each item.",
+      "default": "10"
+    } 
+  ] 
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
