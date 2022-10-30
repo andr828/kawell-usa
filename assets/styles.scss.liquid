@@ -10053,6 +10053,7 @@ div#foursquarecontainer3 {
     border-radius: 30px !important;
     height: 260px !important;
     box-shadow: 0px 0px 30px #00000017 !important;
+    position: relative;
 }
 
 div#foursquarecontainer4 {
@@ -10096,10 +10097,9 @@ div#foursquarecontainer4 {
     font-size: 25px !important;
 }
 #foursquarecontainer3 > div:nth-child(4) {
-    margin-top: 40% !important;
-    padding: 0% !important;
-    padding-left: 4% !important;
-    padding-right: 4% !important;
+  position: absolute;
+  bottom: 20px;
+  font-size: 18px;
 }
 
 
@@ -10589,7 +10589,7 @@ text-align:center
     height: 10px;
     background-color: #fff;
     border-radius: 50%;
-  margin-right: 7px;
+  margin-right: 10px;
 }
 
 .slider-container3 .slider-bullets3 .dots3:hover {
@@ -11151,6 +11151,8 @@ div#blackbanner2 {
 div#slider-bullets3 {
     margin-top: 30px;
     text-align: left;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -11782,4 +11784,8 @@ background-color: #000000b3 !important;
 
 .weglot-container {
   display: none !important;
+}
+
+.clientsect .clientbox img {
+  cursor: pointer;
 }
