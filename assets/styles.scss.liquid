@@ -11790,6 +11790,11 @@ background-color: #000000b3 !important;
   cursor: pointer;
 }
 
+
+#kawell-usa-farrier-advisors {
+  background-color: #f0eae5;
+}
+
 .farriers-banner {
   display: flex;
   gap: 20px;
@@ -11800,29 +11805,181 @@ background-color: #000000b3 !important;
 }
 
 .farriers-page-main {
-  padding: 20px;
+  padding: 40px;
 }
 
 .farriers-page-main img {
   width :100%;
 }
 
-.farriers-banner--right-top,
-.farriers-banner--left img,
-.farriers-banner--right img {
+.farriers-banner--right,
+.farriers-banner--left img {
   border-radius: 30px;
 }
 
 .farriers-banner--right {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0 0 13px 3px #0003;
 }
 
-.farriers-banner--right-top {
-  padding: 30px;
-  color: white;
+.farriers-banner--right h1 {
+  font-size: 50px;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.farriers-banner--right p {
+  font-size: 20px;
+}
+
+.farriers-banner--right--main {
+  padding: 50px 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.farrier {
+  margin-top: 80px;
   border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 0 13px 3px #0003;
+}
+
+.farrier_main {
+  display: flex;
+}
+
+.farrier--textarea {
+  background: black;
+  color: white;
+  padding: 100px 10%;
   flex: 1;
+  display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.farrier--textarea h2 {
+  font-size: 36px;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.farrier_main--textarea p {
+  font-size: 16px;
+}
+
+.farrier-image-container {
+  position: relative;
+}
+
+.farrrier-image--side {
+  height: 100%;
+  object-fit: cover;
+  min-width: 400px;
+}
+
+.farrier_main .farrrier-image--gradient {
+  position: absolute;
+  left: -1px;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.btn-white {
+  background: white;
+  border: 2px solid white;
+  border-radius: 20px !important;
+  padding: 8px 25px;
+  display: inline-block;
+  color: black;
+  font-size: 16px;
+}
+
+.btn-white:hover {
+  background: black;
+  color: white;
+}
+
+.farrier_quiz {
+  padding: 80px;
+  background: white;
+}
+
+.farrier_quiz h3 {
+  margin-bottom: 30px;
+}
+
+.farrier_bottom {
+  display: flex;
+}
+
+.farrier_bottom h3 {
+  color: white;
+  margin-bottom: 30px;
+}
+
+.farrier_bottom .farrrier-image--gradient {
+  position: absolute;
+  right: -1px;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  transform: rotate(180deg);
+}
+
+@media screen and (max-width: 1440px) {
+  .farriers-banner--right--main {
+    padding: 30px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .farriers-banner {
+    flex-direction: column;
+  }
+
+  .farrier_main {
+    flex-direction: column;
+  }
+
+  .farrier_bottom {
+    flex-direction: column;
+  }
+
+  .farrrier-image--gradient {
+    display: none;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .farriers-page-main {
+    padding: 15px;
+  }
+  .farriers-banner--right--main h1 {
+    font-size: 30px;
+  }
+
+  .farriers-banner--right--main p {
+    font-size: 18px;
+  }
+
+  .farrier--textarea {
+    padding: 30px 20px;
+  }
+
+  .farrier_quiz {
+    padding: 20px;
+  }
+
+  .farrier {
+    margin-top: 50px;
+  }
+
 }
