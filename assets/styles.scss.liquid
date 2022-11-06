@@ -10122,6 +10122,7 @@ div#blackbanner1 {
     margin-bottom: 3%;
   float:left;
 }
+
 .blackbannerinner2{
 width: 40%;
     float: left;
@@ -10251,6 +10252,14 @@ width: 40%;
 		background:white;
 }
 
+.featured-product {
+  padding-top: 10%;
+  padding-bottom: 5%;
+  border-radius: 30px;
+  box-shadow: 0 0 30px #00000017;
+  background: white;
+}
+
 span.\33 boxfeatured {
     font-weight: 700 !important;
     font-size: 28px !important;
@@ -10322,16 +10331,15 @@ center.clienttitle {
 /* kawells vision */
 
 div#blackbanner2 {
-    width: 91% !important;
-    background: black !important;
-    margin: 0 auto !important;
-    padding-top: 1% !important;
-    padding-bottom: 1% !important;
-    border-radius: 30px !important;
-    display: flow-root !important;
-  background-image: url(https://cdn.shopify.com/s/files/1/0417/0193/3209/files/Kawell_USA_Kawells_Vision.png?v=1662524062) !important;
-    background-repeat: no-repeat !important;
-    background-position: 0% 22% !important;
+    width: 91%;
+    background-color: black;
+    margin: 0 auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-radius: 30px;
+    display: flow-root;
+    background-repeat: no-repeat;
+    background-position: 0% 22%;
 }
 
 .blackbannerinner3{
@@ -10728,9 +10736,6 @@ width:100%;
 
 }
   
-div#featuredproductsgrid {
-    grid-template-columns: repeat(1, 1fr) !important;
-}
 .topgrid, #topgrid2ndhalf{
 width:100% !important
 }
@@ -11200,6 +11205,17 @@ div#blackbanner2 {
 #kawell-copper-alloy-horseshoes > div.wrapper > div.page > div > div > div > div.full-width.products-related{display:none}
 #kawell-copper-alloy-horseshoes > div.wrapper > div.page > div > div > div > div.product_layout.product_view_default > div.product-main > div > div > div > div > div{margin-bottom: 40px;}
 
+.featuredproductsgrid {
+  display: grid; 
+  grid-auto-flow: row; 
+  grid-template-columns: repeat(3, 1fr); 
+  grid-template-rows: repeat(1, 1fr);
+  gap: 50px;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 @media only screen and (max-width: 900px) {
   .template-index .sticky-header{
     background-color: #00000099 !important;
@@ -11278,7 +11294,7 @@ div#blackbanner2 {
   }
 
 
-.slider-container .slides .slider-numbers {
+  .slider-container .slides .slider-numbers {
     left: 7% !important;
     width: 191px !important;
     top: 10% !important;
@@ -11335,8 +11351,6 @@ div#blackbanner2 {
     margin-bottom: 60px;
   }
 
-
-
   #featuredproductswrapper>h1 {
     margin-top: 80px !important;
     margin-bottom: 20px !important;
@@ -11352,7 +11366,6 @@ div#blackbanner2 {
     background-color: #3636367d !important;
   }
 
-
   .product-name.top-product-detail h1 a {
     font-size: 38px !important;
     width: 100% !important;
@@ -11365,6 +11378,10 @@ div#blackbanner2 {
     padding-right: 10px !important;
   }
 
+  .featuredproductsgrid {
+    grid-template-columns: repeat(1,1fr);
+    gap: 20px;
+  }
 
   button.accordion {
     overflow: scroll !important;
@@ -11543,6 +11560,8 @@ div#blackbanner2 {
   }
 }
 
+// max-width 900px end
+
 
 /* end mobile product */
   div.panelacc{
@@ -11642,12 +11661,6 @@ font-size:13px !important;
 video.autoplayvid {
     width: 100%;
     height: auto;
-}
-.blackbannerinner4 {
-    width: 30%;
-    color: #fff;
-    margin: 0% 6% 6% 7%;
-    float: right;
 }
 
 div#slider-bullets3 {

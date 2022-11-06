@@ -1,0 +1,117 @@
+<div class="clientsect" style="padding-top:100px;padding-bottom:100px">
+  <div style="text-align:center;font-size:46px;font-weight:700;color:#83B848;">{{section.settings.section_title}}</div>
+  <div>
+  <center style="font-size:20px">{{section.settings.section_subTitle}}</center>
+  </div>
+
+
+  <div style="display: grid; grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(1, 1fr)" id="clientgrid">
+    {% for block in section.blocks %}
+      <div class="clientbox">
+        <img src="{{block.settings.client_img | img_url: 'master'}}" style="width:300px;margin:0 auto;display:block" data-toggle="modal" data-target="#staticBackdrop-{{forloop.index}}">
+        <center class="clienttitle" style="font-size:24px">{{block.settings.client_name}}</center>
+        <div class="clienttext" style="text-align:center">{{block.settings.client_desc}}</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% for block in section.blocks %}
+  <div class="modal fade" id="staticBackdrop-{{forloop.index}}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <video class="autoplayvid" width="320" height="240" controls="">
+            <source src="{{block.settings.video_url}}" type="video/mp4">
+            Your browser does not support the video tag.
+            </source>
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+
+<script>
+  let options = {
+    root:null,
+    rootMargin:'0px',
+    threshold:1.0
+  };
+
+  let callback = (entries, observer)=>{
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.play();
+      }
+      else{
+        entry.target.pause();
+      }
+  });
+  }
+  
+  let observer = new IntersectionObserver(callback, options);
+  let bvideos = document.querySelectorAll('.autoplayvid');
+  bvideos.forEach(bvideo => observer.observe(bvideo));
+</script>
+
+{% schema %}
+{
+  "name": "Happy Clients",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Happy Clients"
+    },
+    {
+      "type": "textarea",
+      "id": "section_subTitle",
+      "label": "Section SubTitle",
+      "default": "NATURAL PRODUCTS FOR YOUR PETS AND HORSES"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "client",
+      "name": "Client",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "client_img",
+          "label": "Client Image"
+        },
+        {
+          "type": "text",
+          "id": "client_name",
+          "label": "Client Name"
+        },
+        {
+          "type": "textarea",
+          "id": "client_desc",
+          "label": "Client Desc"
+        },
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "Video Url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Happy Clients",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

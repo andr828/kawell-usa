@@ -1,0 +1,130 @@
+<div style="width:100%;background:white" id="blackbannerwrapper1" class="blackbannerwrapper">
+  <div id="blackbanner2" style="background-image: url('{{section.settings.background_image | img_url: 'master'}}')" class="blackbanner">
+   <div class="blackbannerinner3">
+     </div>
+     <div class="blackbannerinner4">
+      <div class="slider-container3">
+
+          {% for block in section.blocks %}
+            <div class="slides3 fades">
+              <div class="slider-numbers3" style="display:none">1/4</div>
+              <div class="slider-image3"></div>
+              <div class="slider-caption3"> 
+                {%- if block.settings.slide_title != blank -%}
+                <h2 style="color:white">Kawell's Vision</h2>
+                {%- endif -%}
+                
+                {%- if block.settings.slide_description != blank -%}
+                  <p style="color:white">{{block.settings.slide_description}}</p>
+                {%- endif -%}
+              </div>
+            </div> <!-- slider -->
+          {% endfor %}
+
+           
+           <!-- Slider Next and Previous buttons -->
+           <a class="prev3" onclick="plusIndex3(-1)">❮</a>
+           <a class="next3" onclick="plusIndex3(+1)">❯</a>
+           
+           <!-- Slider Selection Bullets -->
+           <div class="slider-bullets3" id="slider-bullets3">
+               <span class="dots3 active" onclick="currentSlide3(1)"></span>
+               <span class="dots3" onclick="currentSlide3(2)"></span>
+           </div> <!-- Slider Bullets -->
+           
+       </div> <!-- slider container -->
+     </div>
+  </div>
+</div>
+<script>
+
+
+var slideIndex3 = 1;
+
+function showImage3(n3) { // for Display the first Image
+   
+   'use strict';
+   
+   var slide3 = document.getElementsByClassName('slides3'),
+       
+       dots3 = document.getElementsByClassName('dots3'),
+       
+       i;
+   
+   if (n3 > slide3.length) { // to prevent larger values than the slide length
+       
+       slideIndex3 = 1;
+   }
+   
+   if (n3 < 1) { // to avoide negative values
+       
+       slideIndex3 = slide3.length;
+   }
+   
+   for (i = 0; i < slide3.length; i++) { // to make other images dispaly: none
+       
+       slide3[i].style.display = 'none';
+   }
+   slide3[slideIndex3 - 1].style.display = 'block';
+   
+   for (i = 0; i < dots3.length; i++) { // to remove the active class from other dots
+       
+       dots3[i].className = dots3[i].className.replace(' active', '');
+   }
+   
+   dots3[slideIndex3 - 1].className += ' active';
+}
+
+showImage3(slideIndex3);
+
+function plusIndex3(n) { // for Next & Prev Actions
+   
+   'use strict';
+   
+   showImage3(slideIndex3 += n);
+}
+
+function currentSlide3(n3) { // for Slide Bullets Selection
+   
+   'use strict';
+   
+   showImage3(slideIndex3 = n3);
+}
+</script>
+
+{% schema %}
+{
+  "name": "Home Visions",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "slide_title",
+          "label": "Slide Title"
+        },
+        {
+          "type": "textarea",
+          "id": "slide_description",
+          "label": "Slide Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Visions",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}
