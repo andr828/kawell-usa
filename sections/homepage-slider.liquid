@@ -1,0 +1,141 @@
+<div class="slider-container1 home-banner-slider">
+    <video id="background-video" autoplay="" loop="" muted="" poster="https://cdn.shopify.com/s/files/1/0417/0193/3209/files/Video_Start.png?v=1666196081">
+    <source src="https://cdn.shopify.com/videos/c/o/v/9b486df1e9814529b3f2883af9aa74de.mov" type="video/mp4">
+    </video>
+
+    <div style="position:absolute;display:none"><img src="https://cdn.shopify.com/s/files/1/0417/0193/3209/files/horse.jpg?v=1658996895"></div>
+            
+        <div class="slides1 fades" style="background:none;background-size: cover;z-index:9">
+            <div class="slider-numbers1"></div>
+            <div class="slider-image1">
+                <span class="slide-left">{{section.settings.banner_title}}
+                <div id="">{{section.settings.banner_subTitle}}</div>
+                <button style="background:transparent !important;border:3px solid white;border-radius:30px;" onclick="window.location.href='{{section.settings.btn_url}}'">{{section.settings.btn_label}}</button></span>
+            </div>
+            
+            <div style="display:none" class="slider-caption1">Caption 1</div>
+        </div> <!-- slider -->
+        
+        <div class="slides1 fades" style="background:none;background-size: cover;">
+            <div class="slider-numbers1"></div>
+            <div class="slider-image1"><span class="slide-left" style="font-size:70px;color:white;font-weight:700;position:relative;top:250px;left:50px">Naturally the next step!</span></div>
+            <div class="slider-caption1" style="display:none">Caption 2</div>
+        </div> <!-- slider -->
+        
+        <div class="slides1 fades" style="background:none;background-size: cover;">
+            <div class="slider-numbers1"></div>
+            <div class="slider-image1"><span class="slide-left" style="font-size:70px;color:white;font-weight:700;position:relative;top:250px;left:50px">Naturally the next step!</span></div>
+            <div class="slider-caption1" style="display:none">Caption 3</div>
+        </div> <!-- slider -->
+        
+            <div class="slides1 fades" style="background:none;background-size: cover;">
+            <div class="slider-numbers1"></div>
+            <div class="slider-image1"><span class="slide-left" style="font-size:70px;color:white;font-weight:700;position:relative;top:250px;left:50px">Naturally the next step!</span></div>
+            <div class="slider-caption1" style="display:none">Caption 4</div>
+        </div>  <!-- slider -->
+        
+        <!-- Slider Next and Previous buttons -->
+        <a class="prev1" style="z-index: 999;" onclick="plusIndex1(-1)">❮</a>
+        <a style="    z-index: 999;" class="next1" onclick="plusIndex1(+1)">❯</a>
+        
+        <!-- Slider Selection Bullets -->
+        <div class="slider-bullets1" style="z-index:999" id="slider-bullets1">
+            <span class="dots1" style="z-index:999" onclick="currentSlide1(1)"></span>
+            <span class="dots1" onclick="currentSlide1(2)"></span>
+            <span class="dots1" onclick="currentSlide1(3)"></span>
+            <span class="dots1" onclick="currentSlide1(4)"></span>
+        </div> <!-- Slider Bullets -->
+        
+    </div> <!-- slider container -->
+
+<script>
+    a = jQuery('#kawell-usa-naturally-the-next-step > div.wrapper > div > header > div.header-container.type32.header-color-custom.header-menu-style-default_new.menu-color-custom.sticky-menu-color-custom.header-menu-center > div.header.container > div.header-center.hidden-sm > div.site-logo');
+    jQuery("#kawell-usa-naturally-the-next-step > div.wrapper > div > header > div.header-container.type32.header-color-custom.header-menu-style-default_new.menu-color-custom.sticky-menu-color-custom.header-menu-center > div.header.container > div.header-left.select-area.hidden-sm").append(a);
+
+    var slideIndex1 = 1;
+
+    function showImage1(nn) { // for Display the first Image
+        'use strict';
+        
+        var slide1 = document.getElementsByClassName('slides1'),
+            dots1 = document.getElementsByClassName('dots1'),
+            ii;
+        
+        if (nn > slide1.length) { // to prevent larger values than the slide length
+            slideIndex1 = 1;
+        }
+        
+        if (nn < 1) { // to avoide negative values
+            slideIndex1 = slide1.length;
+        }
+        
+        for (ii = 0; ii < slide1.length; ii++) { // to make other images dispaly: none
+            slide1[ii].style.display = 'none';
+        }
+        slide1[slideIndex1 - 1].style.display = 'block';
+        
+        for (ii = 0; ii < dots1.length; ii++) { // to remove the active class from other dots
+            dots1[ii].className = dots1[ii].className.replace(' active', '');
+        }
+        
+        dots1[slideIndex1 - 1].className += ' active';
+    }
+
+    showImage1(slideIndex1);
+
+    function plusIndex1(nn) { // for Next & Prev Actions
+        'use strict';
+        showImage1(slideIndex1 += nn);
+    }
+
+    function currentSlide1(nn) { // for Slide Bullets Selection
+        'use strict';
+        showImage1(slideIndex1 = nn);
+    }
+
+    dotss = jQuery('.dots1');
+    jQuery (".dots1" ).click(function() {
+        
+        for (ii = 0; ii < dotss.length; ii++) { // to remove the active class from other dots
+            dotss[ii].className = dotss[ii].className.replace(' active', '');
+        }
+        jQuery(this).addClass( "active" )
+    });
+
+</script>
+
+
+{% schema %}
+{
+  "name": "Homepage Hero", 
+  "settings": [
+    {
+      "type": "text",
+      "id": "banner_title",
+      "label": "Banner Title",
+      "default": "Naturally the next step!"
+    }, 
+    {
+      "type": "text",
+      "id": "banner_subTitle",
+      "label": "Banner SubTitle",
+      "default": "NATURAL PRODUCTS FOR YOUR PETS AND HORSES"
+    }, 
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "Shop Now"
+    }, 
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    }
+  ], 
+  "presets": [{
+    "name": "Homepage Hero",
+    "category": "Homepage" 
+  }]
+}
+{% endschema %}

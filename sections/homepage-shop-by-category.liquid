@@ -1,0 +1,190 @@
+<div class="shop-by-category" style="margin-top:30px" id="firstsection">
+  <center>
+    <h2>{{ section.settings.section_title }}
+    </h2>
+    <h3>
+      {{ section.settings.section_subTitle }}
+    </h3>
+  </center>
+  <div style="margin:5%">
+    <div id="topgrid1sthalf" class="topgrid">
+      <center>
+        <img style="cursor:pointer" onclick="window.location.href='https://kawellusa.com/collections/natural-pet-shampoo/products/matico-natural-healing-shampoo-pet?variant=37373705420953'" src="{{section.settings.left_prod_img | img_url: 'master'}}">
+        <h3>{{section.settings.left_product_title}}
+        </h3>
+        <div style="font-size:18px">{{section.settings.left_product_desc}}
+        </div>
+      </center>
+    </div>
+    <div id="topgrid2ndhalf" class="topgrid">
+      <div class="arow" style="height:100px">
+        <div class="foursquarecontainer" id="foursquarecontainer1">
+          <div style="float:left;width:65%;padding:5%">
+            <span style="font-size: 27px; line-height: 1.2; font-weight: 500; ">Hoof Care</span><br><span style="font-size: 18px; padding: 11%;">Proven to kill 99.9% of bacteria it contacts.</span>
+          </div>
+          <div style="float:left;width:35%"><img style="cursor:pointer" src="https://cdn.shopify.com/s/files/1/0417/0193/3209/files/Hoof-Care.png?v=1666185869" onclick="window.location.href='https://kawellusa.com/collections/horseshoes-inserts'"></div>
+        </div>
+        <div class="foursquarecontainer" id="foursquarecontainer2">
+          <center>
+            <span style="font-size: 27px; line-height: 1.2; font-weight: 500; ">Horse Grooming</span>
+          </center>
+          <div style="float:left;width:35%"><img style="cursor:pointer" src="https://cdn.shopify.com/s/files/1/0417/0193/3209/files/Horse-Grooming-Photo.png?v=1666185869" onclick="window.location.href='https://kawellusa.com/collections/horse-grooming'"></div>
+          <div style="float:left;width:65%;padding:5%;font-size: 18px;">Copper Curry Horse Brush is 100% copper</div>
+        </div>
+      </div>
+      <br style="clear:both">
+      <div class="arow">
+        <div class="foursquarecontainer" id="foursquarecontainer3">
+          <div style="float:left;width:40%"><img style="cursor:pointer" src="https://cdn.shopify.com/s/files/1/0417/0193/3209/files/Healing-Sprays.png?v=1666185869" onclick="window.location.href='https://kawellusa.com/collections/natural-healing-sprays'"></div>
+          <div style="float: left; width: 60%; font-size: 27px; line-height: 1.2; font-weight: 500; margin-bottom: 10px;">Healing Sprays</div>
+          <br>
+          <div>With the natural healing power of Matico and Dragon's Blood</div>
+        </div>
+        <div class="foursquarecontainer" id="foursquarecontainer4">
+          <!-- ######### Slider ######### -->
+
+          <div class="slider-container">
+
+            <div class="slides fades">
+              <div class="slider-numbers">Natural Pet Products</div>
+              <div class="slider-image"></div>
+              <div style="display:none" class="slider-caption">Caption 1</div>
+            </div>
+            <!-- slider -->
+
+            <div class="slides fades">
+              <div class="slider-numbers">For Your Pets &amp; Horses</div>
+              <div class="slider-image"></div>
+              <div class="slider-caption" style="display:none">Caption 2</div>
+            </div>
+            <!-- slider -->
+
+            <div class="slides fades">
+              <div class="slider-numbers">Made With Natural Extracts</div>
+              <div class="slider-image"></div>
+              <div class="slider-caption" style="display:none">Caption 3</div>
+            </div>
+            <!-- slider -->
+
+            <div class="slides fades">
+              <div class="slider-numbers">Treating Overall Health</div>
+              <div class="slider-caption" style="display:none">Caption 4</div>
+            </div>
+            <!-- slider -->
+
+            <!-- Slider Next and Previous buttons -->
+            <a class="prev" onclick="plusIndex(-1)">❮</a>
+            <a class="next" onclick="plusIndex(+1)">❯</a>
+
+            <!-- Slider Selection Bullets -->
+            <div class="slider-bullets" id="slider-bullets">
+              <span class="dots" onclick="currentSlide(1)"></span>
+              <span class="dots" onclick="currentSlide(2)"></span>
+              <span class="dots" onclick="currentSlide(3)"></span>
+              <span class="dots" onclick="currentSlide(4)"></span>
+            </div>
+            <!-- Slider Bullets -->
+
+          </div>
+          <!-- slider container -->
+        </div>
+      </div>
+    </div>
+    <br style="clear:both">
+  </div>
+</div>
+
+<script>
+  var slideIndex = 1;
+
+  function showImage(n) { // for Display the first Image
+
+    'use strict';
+
+    var slide = document.getElementsByClassName('slides'),
+
+      dots = document.getElementsByClassName('dots'),
+
+      i;
+
+    if (n > slide.length) { // to prevent larger values than the slide length
+
+      slideIndex = 1;
+    }
+
+    if (n < 1) { // to avoide negative values
+
+      slideIndex = slide.length;
+    }
+
+    for (i = 0; i < slide.length; i++) { // to make other images dispaly: none
+
+      slide[i].style.display = 'none';
+    }
+    slide[slideIndex - 1].style.display = 'block';
+
+  }
+
+  showImage(slideIndex);
+
+  function plusIndex(n) { // for Next & Prev Actions
+
+    'use strict';
+
+    showImage(slideIndex += n);
+  }
+
+  function currentSlide(n) { // for Slide Bullets Selection
+
+    'use strict';
+
+    showImage(slideIndex = n);
+  }
+</script>
+
+{% schema %}
+  {
+    "name": "Shop by Category",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Section Title",
+        "default": "Shop by Category"
+      },
+      {
+        "type": "text",
+        "id": "section_subTitle",
+        "label": "Section SubTitle",
+        "default": "NATURAL PRODUCTS FOR YOUR PETS AND HORSES"
+      },
+      {
+        "type": "image_picker",
+        "label": "Left Product Image",
+        "id": "left_prod_img"
+      },
+      {
+        "type": "text",
+        "id": "left_product_title",
+        "label": "Left Product Title"
+      }, {
+        "type": "textarea",
+        "id": "left_product_desc",
+        "label": "Left Product Desc"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "feature",
+        "name": "Feature",
+        "settings": []
+      }
+    ],
+    "presets": [
+      {
+        "name": "Shop by Category",
+        "category": "Homepage"
+      }
+    ]
+  }
+{% endschema %}
