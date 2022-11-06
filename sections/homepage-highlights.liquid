@@ -1,0 +1,50 @@
+<div id="gridcounterwrapper" class="homepage-highlights">
+
+  {% for block in section.blocks %}
+    <div style="" class="3gridcounter">
+      <center>
+        <img src="{{block.settings.highlight_image | img_url: 'master'}}" style="display:block">
+        <span style="font-size:56px;color:#83B848;font-weight:700">{{block.settings.highlight_title}}</span>
+        <br>
+        <span style="font-size:26px">{{block.settings.highlight_desc}}</span>
+      </center>
+    </div>
+  {% endfor %}
+</div>
+<br style="clear:both">
+
+{% schema %}
+  {
+    "name": "Homepage Highlights",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "highlight",
+        "name": "Highlight",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "highlight_image",
+            "label": "Highlight Image"
+          },
+          {
+            "type": "text",
+            "id": "highlight_title",
+            "label": "Highlight Title"
+          },
+          {
+            "type": "text",
+            "id": "highlight_desc",
+            "label": "Highlight Desc"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Homepage Highlights",
+        "category": "Homepage"
+      }
+    ]
+  }
+{% endschema %}

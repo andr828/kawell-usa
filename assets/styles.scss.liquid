@@ -10102,16 +10102,16 @@ div#blackbannerwrapper1 {
 }
 
 div#blackbanner1 {
-    margin-top: 12% !important;
-    width: 91% !important;
-    background: black !important;
-  background-image:url('https://cdn.shopify.com/s/files/1/0417/0193/3209/files/Kawell_USA_Love_For_Animals_Homepage.png?v=1662524063') !important;
-    margin: 0 auto !important;
-    padding-top: 1% !important;
-    padding-bottom: 1% !important;
-    border-radius: 30px !important;
-      background-position: 100% 25% !important;
-    background-repeat: no-repeat !important;
+    margin-top: 12%;
+    width: 91%;
+    background-color: black;
+    margin: 0 auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-radius: 30px;
+      background-position: 100% 25%;
+    background-repeat: no-repeat;
+    overflow: auto;
 }
 
 .blackbannerinner1 {
@@ -10147,9 +10147,29 @@ width: 40%;
 
 /* using natural ingredients */
 
-.naturalingredientcontainer h2 {
+.ingredients h2 {
     margin-top: 30px !important;
     margin-bottom: 40px !important;
+}
+
+.ingredients-images {
+  display: flex;
+  gap: 80px;
+  justify-content: center;
+}
+
+.ingredients-image, .ingredients-hands{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .ingredients-images {
+    flex-direction: column;
+    gap: 20px;
+  }
+
 }
 
 #shopify-section-16586532575cd6450d > div > div > div > div:nth-child(4) > center {
@@ -10163,17 +10183,26 @@ width: 40%;
     margin-bottom: 60px !important;
 }
 
-#gridcounterwrapper > div:nth-child(1) > center > span:nth-child(1) {
+.homepage-highlights {
+  display: grid; 
+  grid-auto-flow: row; 
+  grid-template-columns: repeat(3, 1fr); 
+  grid-template-rows: repeat(1, 1fr);
+  background:white;
+  padding:100px 0;
+}
+
+.homepage-highlights > div:nth-child(1) > center > span:nth-child(1) {
     font-weight: 800 !important;
     font-size: 70px !important;
 }
 
-#gridcounterwrapper > div:nth-child(2) > center > span:nth-child(1) {
+.homepage-highlights > div:nth-child(2) > center > span:nth-child(1) {
     font-weight: 800 !important;
     font-size: 70px !important;
 }
 
-#gridcounterwrapper > div:nth-child(3) > center > span:nth-child(1) {
+.homepage-highlights > div:nth-child(3) > center > span:nth-child(1) {
     font-weight: 800 !important;
     font-size: 70px !important;
 }
@@ -10630,38 +10659,39 @@ header fixes below
 @media only screen and (max-width:900px) { 
 
   span.slide-left {
-   background-color: #00000091;
-   padding-top: 20px;
-   padding-bottom: 30px;
-   margin-left: -5px;
-   border-top: 5px solid #fff;
-   border-bottom: 5px solid #fff;
-}
-  .blackbannerinner4{
-    
-    height: 426px !important;
-
-      padding-bottom: 85px !important;
+    background-color: #00000091;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    margin-left: -5px;
+    border-top: 5px solid #fff;
+    border-bottom: 5px solid #fff;
   }
-  .slider-caption2 p{
-font-size:15px !important;
-}
-  #gridcounterwrapper{
-    grid-template-columns: repeat(1, 1fr) !important;
-}
-  .header-container.sticky-header {
-    background: #00000094 !important;
-}
-  .header-container.type4 .menu-icon{
-    position: relative;
-    top: 16px;
-}
-  .search-icon .icon-search:before{
-    filter: invert(0) !important;
-}
-.header-color-custom a{
-    color: #ffffff !important;
-}
+    .blackbannerinner4{
+      
+      height: 426px !important;
+
+        padding-bottom: 85px !important;
+    }
+    .slider-caption2 p{
+  font-size:15px !important;
+  }
+    .homepage-highlights{
+      grid-template-columns: repeat(1, 1fr) !important;
+      padding: 30px 0;
+  }
+    .header-container.sticky-header {
+      background: #00000094 !important;
+  }
+    .header-container.type4 .menu-icon{
+      position: relative;
+      top: 16px;
+  }
+    .search-icon .icon-search:before{
+      filter: invert(0) !important;
+  }
+  .header-color-custom a{
+      color: #ffffff !important;
+  }
   #shopify-section-16586532575cd6450d > div > div > div > div:nth-child(5){width:100% !important;}
   #shopify-section-16586532575cd6450d > div > div > div > div:nth-child(5){margin-bottom: -100px !important;}
   #shopify-section-16586532575cd6450d > div > div > div > div:nth-child(5) > div{width: 250px;margin: 0 auto;    position: relative;bottom: 210px;}
@@ -11301,7 +11331,7 @@ div#blackbanner2 {
   }
 
 
-  div#gridcounterwrapper div {
+  div.homepage-highlights div {
     margin-bottom: 60px;
   }
 
