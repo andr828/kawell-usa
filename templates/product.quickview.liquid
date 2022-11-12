@@ -1,5 +1,23 @@
 <!-- /templates/product.quickview.liquid -->
 {%- layout none -%}
+<head>
+  {%- if template contains 'index' -%}
+    {%- if page_title != blank and page_title != 'Welcome' -%}
+    {%- comment smartseo_integration_begin_meta_data -%}<title>{{ page_title }}</title>{%- endcomment smartseo_integration_end_meta_data -%}
+    {%- else -%}
+    {%- comment smartseo_integration_begin_meta_data -%}<title>{{ shop.name }}</title>{%- endcomment smartseo_integration_end_meta_data -%}
+    {%- endif -%}
+    {%- elsif template == '404' -%}
+    {%- comment smartseo_integration_begin_meta_data -%}<title>Page Not Found - {{ shop.name }}</title>{%- endcomment smartseo_integration_end_meta_data -%}
+    {%- else -%}
+    {%- comment smartseo_integration_begin_meta_data -%}<title>{{ page_title }} - {{ shop.name }}</title>{%- endcomment smartseo_integration_end_meta_data -%}
+    {%- endif -%}
+
+  <link rel="canonical" href="{{ canonical_url }}" />
+  {%- if settings.disable_responsive == 'no' -%}
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  {%- endif -%}
+</head>
 {% assign variant_tmp = product.selected_or_first_available_variant | default: product.variants.first %}
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
 {% assign media_col = settings.product_image_size %}
