@@ -17,10 +17,11 @@
 </div>
 {% if product.images.size >= 1 and settings.media_slide_layout == 'verticle' %}
 <div class="more-views-vertical">
-    <a class="more-views-prev more-views-nav" href="javascript:void(0)" id="carousel-up" style="display: block;">
-      <i class="icon-angle-up"></i>
-    </a>
+
     <div class="media-list">
+      <a class="more-views-prev more-views-nav" href="javascript:void(0)" id="carousel-up" style="display: block;">
+        <i class="icon-angle-up"></i>
+      </a>
         <div id="more-slides" class="vertical-carousel product-image-thumbs">
         {% for image in product.images %}
         <a class="thumb-link" href="javascript:void(0);" data-image-index="{{ forloop.index }}" data-image="{{ image | product_img_url: image_size, crop: 'center' }}" data-zoom-image="{{ image | product_img_url:'master' }}">
@@ -28,10 +29,11 @@
         </a>
         {% endfor %}
         </div>
+      <a class="more-views-next more-views-nav" href="javascript:void(0)" id="carousel-down" style="display: block;">
+        <i class="icon-angle-down"></i>
+      </a>
     </div>
-    <a class="more-views-next more-views-nav" href="javascript:void(0)" id="carousel-down" style="display: block;">
-      <i class="icon-angle-down"></i>
-    </a>
+
 </div>
 {% endif %}
 {% if product.images.size > 1 and settings.media_slide_layout == 'horizontal' %}
