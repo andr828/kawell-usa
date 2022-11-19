@@ -389,7 +389,7 @@
     transition: all .3s;
     border: 0;
     box-shadow: 0 0 3px rgba(0, 0, 0, .3);
-    z-index: 50;
+    z-index: 100;
   }
   .top-newsletter form .input-group input.input-group-field {
     width: 160px;
@@ -1539,4 +1539,12 @@
     }
   }
 }
-@media (min-width: 1280px) {.container {max-width: 1200px;}}
+@media (min-width: 1280px) {
+  .container {max-width: 1200px;}
+  .header-container {
+    .header {
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+  }
+}
