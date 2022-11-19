@@ -9662,11 +9662,16 @@ ul.form-list {
 }
 
 .slider-container .slider-bullets {
-
-      text-align: left;
+    text-align: left;
     margin-left: 12%;
     padding-left: 20px;
     margin-top: -9%;
+}
+
+@media screen and (max-width: 600px) {
+  .slider-container .slider-bullets {
+    padding-left: 0;
+  }
 }
 
 .slider-container .slider-bullets .dots {
@@ -9911,31 +9916,37 @@ i.icon-search {
 /* mantle bar */
 
 .slidermantle{
-	width: 80%;
-    margin: 0 auto;
-    background: white;
-    height: 90px;
-    padding-top: 15px;
-    border-radius: 20px;
-    padding-left: 5%;
-    padding-right: 0%;
-    box-shadow: 0 0 30px #00000029;
-z-index:999;
-      font-size: 20px;
-    font-weight: 700;
-      position: relative;
-    bottom: 0px;
+  width: 80%;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 0 30px #00000029;
+  z-index:999;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+  bottom: 0px;
+  display: flex;
+  justify-content: 
+  space-around;
+  align-items: center;
+  padding: 20px 60px;
 }
 
+@media screen and (max-width: 767px) {
+  .slidermantle {
+    padding: 20px;
+  }
+
+  .slidermantle .mantledot img {
+    width: 25px;
+  }
+  
+}
 
 .mantletext1{
-float:left;
-text-align:center;
-float: left;
- text-align: center;
-width: 19%;
- padding-top: 15px;
- }
+
+}
  #shopify-section-1658902013c5053893{ margin-bottom: -171px; }
  .mantletext2{
      width: 15%;
@@ -10032,20 +10043,64 @@ shopify-section-3f949ff9-a162-406d-9500-5bacd34bbc79>div>div>div>center>h3 {
 /* space and right boxes whole width */
 
 #topgrid1sthalf{
-	width:40%;float:left
+	flex: 2;
 }
 #topgrid2ndhalf{
-	width:58%;margin-left:2%;float:left
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  gap: 30px;
+  padding-left: 40px;
+  flex: 3;
+}
+
+.foursquarecontainer__main {
+  display: flex;
+  gap: 20px;
+}
+
+.foursquarecontainer__img {
+  max-width: 125px;
+  object-fit: contain;
+}
+
+.foursquarecontainer__desc {
+  font-size: 18px;
+}
+
+.shop-by-category__container {
+  display: flex;
+}
+
+.shop-by-category__productTitle {
+  font-size: 18px;
+  max-width: 500px;
+  margin-top: 15px;
+}
+
+@media screen and (max-width: 1300px) {
+  .shop-by-category__container {
+    flex-direction: column;
+  }
+
+  #topgrid1sthalf{
+    margin-bottom: 30px;
+  }
+
+  #topgrid2ndhalf {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #topgrid2ndhalf {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* right boxes */
 .shop-by-category .foursquarecontainer {
-  width: 45%;
-  margin-right: 2.5%;
-  margin-left: 2.5%;
   background: white;
-  padding: 20px;
-  margin-top: 5%;
+  padding: 25px;
   float: left;
   border-radius: 30px;
   height: 260px;
@@ -10708,7 +10763,10 @@ header fixes below
   #shopify-section-16586532575cd6450d > div > div > div > div:nth-child(3){width:100% !Important}
   #blackbanner1 > div.blackbannerinner1 > div{width:295px !important}
   #shopify-section-16586532575cd6450d > div > div > div > div:nth-child(3) > div{width:256px !important;margin: 0 auto}
-  .slidermantle{bottom: -184px !important;}
+  .slidermantle{
+    bottom: -184px !important;
+    width: 92%;
+  }
   .slider-container .slides .slider-numbers{left: -3% !important; width: 191px !important; top: 50% !important;font-size:25px !Important}
   #foursquarecontainer3>div:nth-child(2){position: relative; right: 26px; font-size: 21px !important;}
 #foursquarecontainer3 > div:nth-child(4){font-size: 15px !important;}
@@ -10719,8 +10777,10 @@ header fixes below
 .dates{
   grid-template-columns: repeat(1, 1fr) !important;
 }
-  .mantletext1, .mantletext2, .mantletext3, .mantletext4{
-font-size:11px !important;
+
+.mantletext1, .mantletext2, .mantletext3, .mantletext4{
+  font-size:11px;
+  text-align: center;
 }
 .mantledot1, .mantledot2, .mantledot3{
     width: 7%!important;
@@ -11230,65 +11290,12 @@ div#blackbanner2 {
     bottom: 107px !important;
 	}
 
-  div#foursquarecontainer1 {
-    width: 96% !important;
-    margin-left: 0px !important;
-    background: white !important;
-    padding: 20px !important;
-    float: left !important;
-    border-radius: 30px !important;
-    box-shadow: 0 0 30px #00000017 !important;
-    height: 180px !important;
-  }
-
-  div#foursquarecontainer2 {
-    width: 96% !important;
-    margin-right: 2.5% !important;
-    margin-left: 0px !important;
-    background: white !important;
-    padding: 20px !important;
-    float: left !important;
-    border-radius: 30px !important;
-    height: 210px !important;
-    box-shadow: 0 0 30px #00000017 !important;
-    margin-top: 27px;
-  }
-
-  div#foursquarecontainer3 {
-    width: 96% !important;
-    margin-right: 0px !important;
-    margin-left: 0px !important;
-    background: white !important;
-    padding: 20px !important;
-    margin-top: 7% !important;
-    float: left !important;
-    border-radius: 30px !important;
-    height: 240px !important;
-    box-shadow: 0 0 30px #00000017 !important;
-  }
-
-  
-  div#foursquarecontainer4 {
-    width: 96% !important;
-    margin-right: 0px !important;
-    margin-left: 0px !important;
-    margin-top: 25px !important;
-    margin-bottom: 30px;
-    background: white !important;
-    float: left !important;
-    border-radius: 30px !important;
-    background-color: #83b848 !important;
-    height: 170px !important;
-    font-size: 36px !important;
-    color: #fff !important;
-    background-image: url(https://cdn.shopify.com/s/files/1/0417/0193/3209/files/paws.png?v=1662524061)!important;
-    background-repeat: no-repeat !important;
-    background-position: 84% 22% !important;
+  .shop-by-category .foursquarecontainer {
+    padding: 20px;
   }
 
   .slider-container .slides .slider-numbers {
     left: 7% !important;
-    width: 191px !important;
     top: 10% !important;
     font-size: 25px !important;
   }
@@ -11296,7 +11303,6 @@ div#blackbanner2 {
 
   .slider-container .slides .slider-numbers {
     left: 7% !important;
-    width: 191px !important;
     top: 10% !important;
     font-size: 25px !important;
   }
