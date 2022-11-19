@@ -40,7 +40,7 @@
       {%- assign grid = 12 | minus: groups -%}
       {%- assign child_list_handle = link.title | handleize -%}
       {%- if linklists[child_list_handle].links != blank -%}
-      <li class="level0 level-top parent {% if link.active %}active{% endif %}{% if settings[menu_type] =='classic'%} m-dropdown {% endif %} {% if settings[menu_type] == 'staticwidth' %} static-dropdown {% endif %} {% if settings[menu_float] == 'right' %} float-right {% endif %}">
+      <li class="level0 level-top parent {% if link.active %}active{% endif %} {% if settings[menu_type] == 'staticwidth' %} static-dropdown {% endif %} {% if settings[menu_float] == 'right' %} float-right {% endif %}">
         <a href="{{ link.url }}" class="level-top">
           {%- if settings[menu_icon_image_use] != blank -%}
           <img class="category-icon" data-src="{{ menu_icon_image | asset_url }}" alt="icon">

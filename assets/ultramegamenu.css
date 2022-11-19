@@ -447,7 +447,7 @@ li.level0 > a > span > .pin-bottom:before {
   margin-top: -3px;
 }
 .cat-label.cat-label-new {background-color: #0cc485;}
-.top-navigation li.level0 ul li {height: auto;}
+.top-navigation li.level0 ul li {height: auto; text-align: center;}
 .top-navigation .menu-wrap-sub ul {
   position: static;
   width: 100%;
@@ -468,6 +468,7 @@ li.level0 > a > span > .pin-bottom:before {
   font-size: 13px;
   text-transform: capitalize;
 }
+
 .top-navigation li.level0 ul li.groups > a {
   margin: 10px 8px 5px;
   padding: 0 5px;
