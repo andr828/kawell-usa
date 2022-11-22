@@ -5277,6 +5277,8 @@ img:not(.lazyloaded) {
     color: #777;
     font-size: 0;
     font-weight: 400;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 
     &::after {
       display: inline-block;
@@ -5739,8 +5741,6 @@ img:not(.lazyloaded) {
     > a {
       margin-right: 10px;
       padding: 18.5px 15px 20.5px 0;
-      font-size: 13px;
-      font-weight: 600;
       letter-spacing: .001em;
     }
 
@@ -10338,34 +10338,23 @@ width: 40%;
 }
 
 span.\33 boxfeatured {
-    font-weight: 700 !important;
-    font-size: 28px !important;
-    line-height: 1.2em !important;
-    margin-bottom: 15px !important;
+    font-size: 28px;
+    line-height: 1.2em;
+    text-align:center;
+    margin:0 auto 15px;
+    display:block;
+    width:100%;
+    font-weight:500;
 }
 
-#featuredproductswrapper > div > div:nth-child(1) > div > span:nth-child(2) {
-    font-size: 17px !important;
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-    width: 100% !important;
-    margin-bottom: 30px !important;
-}
 
-#featuredproductswrapper > div > div:nth-child(2) > div > span:nth-child(2) {
+#featuredproductswrapper .featured-product--container span:nth-child(2) {
     font-size: 17px;
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-    width: 100% !important;
-    margin-bottom: 30px !important;
-}
-
-#featuredproductswrapper > div > div:nth-child(3) > div > span:nth-child(2) {
-    font-size: 17px !important;
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-    width: 100% !important;
-    margin-bottom: 30px !important;
+    margin: 0 auto 30px;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto 30px;
+    display: block;
 }
 
 .\33 productbutton {
@@ -11664,6 +11653,10 @@ font-size:13px !important;
 font-size:13px !important;
 }
 
+.template-collection .main-nav ul.top-navigation>li>a{
+  font-size:13px !important;
+  }
+
 .template-product .main-nav ul.top-navigation>li>a {
 font-size:13px !important;
 }
@@ -11689,7 +11682,9 @@ font-size:13px !important;
 font-size:13px !important;
 }
 
-
+.template-article  .main-nav ul.top-navigation>li>a{
+  font-size:13px !important;
+}
 
 .sticky-header .header-wrapper{background:black !important}
 

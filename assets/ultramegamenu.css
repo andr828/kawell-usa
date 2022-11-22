@@ -328,12 +328,8 @@
 }
 
 .top-navigation li.level0 a.level-top {
-  padding: 17px 20px;
   color: #fff;
-  font-size:12px;
-  font-weight: 700;
   line-height: 1;
-  text-transform: uppercase;
 }
 
 .top-navigation li.level0.parent a.level-top {padding-right: 25px;}

@@ -1,5 +1,5 @@
 <div style="padding-bottom:100px" class="featured-products" id="featuredproductswrapper">
-  <h1 style="font-weight: 600;margin: 50px auto 20px; color: black" class="text-center">{{section.settings.section_title}}</h1>
+  <h1 class="text-center">{{section.settings.section_title}}</h1>
   <div class="featuredproductsgrid">
     {% for block in section.blocks %}
       <div class="featured-product">
@@ -7,8 +7,8 @@
           <img src="{{block.settings.product_img | img_url: 'master'}}" style="width:270px">
         </center>
         <div class="featured-product--container" style="padding: 7%">
-          <span class="3boxfeatured" style="text-align:center;margin:0 auto;display:block;width:100%;font-size:24px;font-weight:500">{{block.settings.product_title}}</span>
-          <span style="text-align:center;margin:0 auto;display:block;width:80%">{{block.settings.product_desc}}</span>
+          <span class="3boxfeatured">{{block.settings.product_title}}</span>
+          <span>{{block.settings.product_desc}}</span>
           <a href="{{block.settings.product_url}}"><div class="3productbutton" style="width:200px;border-radius:10px;border:2px black solid;text-align:center;margin:0 auto;font-size:26px;padding:10px">Shop Now</div></a>
         </div>
       </div>
