@@ -145,7 +145,7 @@
 
 {% include 'swift_core' %} 
  {% render 'weglot_hreftags' %}
-{%- comment -%} {% render 'weglot_switcher' %} {%- endcomment -%}
+{% render 'weglot_switcher' %}
 </head>
 <body id="{{ page_title | handle }}" class="{% if settings.new_style_css == 'yes' %}site-new-style{% endif %}{% if settings.header_fullwidth != blank %} header-full-width{% endif %}{% if settings.background_color == 'dark' %} dark{% endif %}{% if settings.layout == '1024px' %} layout-1024{% endif %}{% if settings.layout == '1280px' %} layout-1280{% endif %}{% if settings.layout == 'full_width' %} full-width{% endif %}{% if customer %} customer-logged-in{% endif %} template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if settings.boxed == 'boxed' %} boxed{% endif %}{% if settings.border_radius == 'yes' %} disable_radius{% endif %}{% if settings.collection_flex_grid != blank %} collection-flex-grid{% endif %}{% if settings.header_sticky_enable == 'enable' %} enable-sticky-header{% endif %}">
   <!-- begin site-header -->
