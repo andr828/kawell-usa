@@ -3,15 +3,16 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
 
-  <title>{{product.title}}</title>
+  <title>{{product.title}} Quick View</title>
 
-  <link rel="canonical" href="{{ canonical_url }}"/>
+  <link rel="canonical" href="{{ canonical_url }}?view=quickview"/>
+
   {%- if settings.disable_responsive == 'no' -%}
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
   {%- endif -%}
 
-  <meta name="description" content="{{ page_description | escape }}"/>
-  <link rel="alternate" hreflang="en" href="{{ canonical_url }}">
+  <meta name="description" content="quickview {{ page_description | escape }}"/>
+  {%- comment -%} <link rel="alternate" hreflang="en" href="{{ canonical_url }}?view=quickview"> {%- endcomment -%}
 </head>
 
 {% assign variant_tmp = product.selected_or_first_available_variant | default: product.variants.first %}
