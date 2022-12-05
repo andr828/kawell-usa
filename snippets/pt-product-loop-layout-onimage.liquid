@@ -45,6 +45,7 @@
         {% if hoverImage != blank %}
           {% if settings.collection_alternative_image != blank %}
             <img data-src="{{ hoverImage.src | img_url: image_size, crop: 'center' }}" alt="{{ hoverImage.alt | escape }}" class="hover-image img-responsive lazyload" style="padding-top: {{pt}};">
+            {% assign hoverImage = blank %}
           {% endif %}
         {% else %}
           {% if product.images[1] and settings.collection_alternative_image != blank %}

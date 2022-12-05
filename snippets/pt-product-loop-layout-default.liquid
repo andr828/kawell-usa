@@ -35,8 +35,23 @@
       {%- endif -%}
       <div class="inner {% if product.images[1] and settings.collection_alternative_image != blank %}img-effect{% endif %}">
         <img data-src="{{ product.featured_image.src | img_url: image_size, crop: 'center' }}" alt="{{ product.featured_image.alt | escape }}" class="img-responsive main lazyload" style="padding-top: {{pt}};">
-        {% if product.images[1] and settings.collection_alternative_image != blank %}
-          <img data-src="{{ product.images[1].src | img_url: image_size, crop: 'center' }}" alt="{{ product.images[1].alt | escape }}" class="hover-image img-responsive lazyload" style="padding-top: {{pt}};">
+        
+        
+        {% for image in product.images %}
+          {% if image.alt contains 'hoverImage' %}
+            {% assign hoverImage = image %}
+          {% endif %}
+        {% endfor %}
+
+        {% if hoverImage != blank %}
+          {% if settings.collection_alternative_image != blank %}
+            <img data-src="{{ hoverImage.src | img_url: image_size, crop: 'center' }}" alt="{{ hoverImage.alt | escape }}" class="hover-image img-responsive lazyload" style="padding-top: {{pt}};">
+            {% assign hoverImage = blank %}
+          {% endif %}
+        {% else %}
+          {% if product.images[1] and settings.collection_alternative_image != blank %}
+            <img data-src="{{ product.images[1].src | img_url: image_size, crop: 'center' }}" alt="{{ product.images[1].alt | escape }}" class="hover-image img-responsive lazyload" style="padding-top: {{pt}};">
+          {% endif %}
         {% endif %}
       </div>
       {% if product.description contains '[countdown]' %}
