@@ -45,7 +45,9 @@
         </div>
         {% if settings.product_short_desc != '0' %}
         <div class="short-description-detail">
-          <div class="short-description">
+          {% if product.metafields.custom.short_description != blank %}
+            {{product.metafields.custom.short_description | truncatewords: 30}}
+          {% else %}
             {%- assign description = product.description -%}
             {%- if product.description contains '[shortdesc]' and settings.product_short_desc == '1' -%}
             {%- assign last = description | split:'[shortdesc]' | last -%}
@@ -70,7 +72,7 @@
             {%- else -%}
             {{ description | split: '[lang2]' | first }}
             {%- endif -%}
-          </div>
+          {% endif %}
         </div>
         {% endif %}
         <div class="middle-product-detail">

@@ -93,30 +93,34 @@
           {%- if settings.product_short_desc != '0' -%}
           <div class="short-description-detail">
             <div class="short-description">
-              {%- assign description = product.description -%}
-              {%- if product.description contains '[shortdesc]' and settings.product_short_desc == '1' -%}
-              {%- assign last = description | split:'[shortdesc]' | last -%}
-              {%- assign description = last | split:'[/shortdesc]' | first -%}
-              {%- else -%}
-              {%- if product.description contains '[countdown]' -%}
-              {%- assign description = description | split:'[/countdown]' | last -%}
-              {%- endif -%}
-              {%- if product.description contains '[shortdesc]' -%}
-              {%- assign description = description | split:'[/shortdesc]' | last -%}
-              {%- endif -%}
-              {%- if product.description contains '[additional]' -%}
-              {%- assign description = description | split:'[/additional]' | last -%}
-              {%- endif -%}
-              {%- if settings.product_short_desc == '1' -%}
-              {%- assign description = description | strip_html | truncatewords: 30 -%}
-              {%- endif -%}
-              {%- endif -%}
-              {%- if settings.language_enable -%}
-              <div class="lang1">{{ description | split: '[lang2]' | first }}</div>
-              <div class="lang2">{{ description | split: '[lang2]' | last }}</div>
-              {%- else -%}
-              {{ description | split: '[lang2]' | first }}
-              {%- endif -%}
+              {% if product.metafields.custom.short_description != blank %}
+                {{product.metafields.custom.short_description | truncatewords: 30}}
+              {% else %}
+                {%- assign description = product.description -%}
+                {%- if product.description contains '[shortdesc]' and settings.product_short_desc == '1' -%}
+                {%- assign last = description | split:'[shortdesc]' | last -%}
+                {%- assign description = last | split:'[/shortdesc]' | first -%}
+                {%- else -%}
+                {%- if product.description contains '[countdown]' -%}
+                {%- assign description = description | split:'[/countdown]' | last -%}
+                {%- endif -%}
+                {%- if product.description contains '[shortdesc]' -%}
+                {%- assign description = description | split:'[/shortdesc]' | last -%}
+                {%- endif -%}
+                {%- if product.description contains '[additional]' -%}
+                {%- assign description = description | split:'[/additional]' | last -%}
+                {%- endif -%}
+                {%- if settings.product_short_desc == '1' -%}
+                {%- assign description = description | strip_html | truncatewords: 30 -%}
+                {%- endif -%}
+                {%- endif -%}
+                {%- if settings.language_enable -%}
+                <div class="lang1">{{ description | split: '[lang2]' | first }}</div>
+                <div class="lang2">{{ description | split: '[lang2]' | last }}</div>
+                {%- else -%}
+                {{ description | split: '[lang2]' | first }}
+                {%- endif -%}
+              {% endif %}
             </div>
           </div>
           {%- endif -%}
