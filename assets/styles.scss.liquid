@@ -10250,6 +10250,21 @@ width: 40%;
 
 }
 
+.ingredients-message {
+  font-weight:500;
+  font-size:32px;
+  font-style:italic;
+  margin-left:20%;
+  margin-right:20%;
+}
+
+@media screen and (max-width: 768px) {
+  .ingredients-message {
+    font-size: 20px;
+    margin: 0 25px;
+  }
+}
+
 #shopify-section-16586532575cd6450d > div > div > div > div:nth-child(4) > center {
     font-size: 30px !important;
 }
@@ -10363,11 +10378,6 @@ span.\33 boxfeatured {
 
 
 /* happy clients */
-
-.clientsect {
-    padding-top: 60px !important;
-    padding-bottom: 100px !important;
-}
 
 #shopify-section-16587207990b44ba94 > div > div > div > div:nth-child(1) {
     font-size: 40px !important;
@@ -10637,6 +10647,14 @@ text-align:center
 @media screen and (max-width: 1500px) {
   .slider-container3 .slides3 .slider-caption3 {
     font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .slider-container3 .slides3 .slider-caption3 {
+    position: initial;
+    padding-top: 0;
+
   }
 }
 
@@ -11238,8 +11256,16 @@ background: #F1EBE6 0% 0% no-repeat padding-box;
 }
 
 .clientsect {
-    padding-top: 60px!important;
-    padding-bottom: 140px!important;
+    padding-top: 60px;
+    padding-bottom: 140px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .clientsect {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
 }
 
 div#blackbanner2 {
@@ -11514,10 +11540,10 @@ div#blackbanner2 {
   .blackbannerinner1, .blackbannerinner2, .blackbannerinner3, .blackbannerinner4 {
     width: 100%;
     margin: 0;
-    padding: 30px;
+    padding: 15px;
     padding-bottom: 30px;
     background-color: #00000094;
-    border-radius: 25px;
+    border-radius: 0;
     text-align: center;
   }
 
@@ -11529,6 +11555,7 @@ div#blackbanner2 {
   div#blackbanner2 {
     padding-top: 0;
     padding-bottom: 0;
+    overflow: hidden;
   }
 
   .header-container.type4 .site-logo .logo img {
