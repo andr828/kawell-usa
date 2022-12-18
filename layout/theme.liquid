@@ -335,7 +335,7 @@
   {%- endif -%}
 
   {{ "jquery.elevatezoom.min.js" | asset_url | script_tag }}
-  {%- if template contains 'product' or template contains 'collection' -%}
+  {%- if template contains 'product' or template contains 'collection' or template contains 'search' -%}
     {% include 'currency' %}
     {{ 'option_selection.js' | asset_url | script_tag }}
   {%- endif -%}
