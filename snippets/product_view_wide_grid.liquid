@@ -1,434 +1,690 @@
-<div class="product-view product-page-area {% if settings.move_product_tab != blank %}moved-tab{% endif %}">
-    <div class="product-essential">
-      <div class="row">
-        <div class="product-img-box col-md-{{media_col}}">
-          <div class="product-img-list{% if settings.media_slide_layout == 'verticle' %} thumb-vertical{% endif %}">
-            {% include 'media' %}
-          </div>
+<div
+  class="product-view product-page-area {% if settings.move_product_tab != blank %}moved-tab{% endif %}">
+  <div
+    class="product-essential">
+    <div
+      class="row">
+      <div
+        class="product-img-box col-md-{{media_col}}">
+        <div
+          class="product-img-list{% if settings.media_slide_layout == 'verticle' %} thumb-vertical{% endif %}">
+          {% include 'media' %}
         </div>
-        <div class="product-shop col-md-{{main_col}}">
-          <div class="product-shop-wrapper">
-            {%- if settings.product_prev_next != blank -%}
-            <div class="prev-next-products">
+      </div>
+      <div
+        class="product-shop col-md-{{main_col}}">
+        <div
+          class="product-shop-wrapper">
+          {%- if settings.product_prev_next != blank -%}
+            <div
+              class="prev-next-products">
               {%- if collection -%}
-              {%- if collection.previous_product -%}
-              <div class="product-nav product-prev">
-                <a href="{{ collection.previous_product }}" title="Previous Product">
-                  {{ settings.product_prev_text }}
-                </a>
-                {%- assign words = collection.previous_product | split:'/' -%}
-                {%- assign word = words.last -%}
-                <div class="product-pop theme-border-color" data-with-product="{{word}}">
-                  <script type="text/template">
-                    <img class="product-image lazyload" data-src="[img:medium]" alt="#title#"/>
-                    <h3 class="product-name">#title#</h3>
-                  </script>
-                </div>
-              </div>
-              {%- endif -%}
-              {%- if collection.next_product -%}
-              <div class="product-nav product-next">
-                <a class="product-next" href="{{ collection.next_product }}" title="Next Product">
-                  {{ settings.product_next_text }}
-                </a>
-                {%- assign words = collection.next_product | split:'/' -%}
-                {%- assign word = words.last -%}
-                <div class="product-pop theme-border-color" data-with-product="{{word}}">
-                  <script type="text/template">
-                    <img class="product-image lazyload" data-src="[img:medium]" alt="#title#"/>
-                    <h3 class="product-name">#title#</h3>
-                  </script>
-                </div>
-              </div>
-              {%- endif -%}
-              {%- endif -%}
-            </div>
-            {%- endif -%}
-            <div class="product-name top-product-detail">
-              <h1>
-                <a href="{{ product.url | within: collection }}">
-                  {%- if settings.language_enable -%}
-                  <span class="lang1">{{ product.title | split: '|' | first }}</span>
-                  <span class="lang2">{{ product.title | split: '|' | last }}</span>
-                  {%- else -%}
-                  {{ product.title | split: '|' | first }}
-                  {%- endif -%}
-                </a>
-              </h1>
-            </div>
-            <div class="review-product-details">
-              <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"> <!-- Stamped - Begin Star Rating Badge -->
-  <span 
-  class="stamped-product-reviews-badge stamped-main-badge" 
-  data-id="{{ product.id }}" 
-  data-product-sku="{{ product.handle }}" 
-  data-product-title="{{product.title}}" 
-  data-product-type="{{product.type}}" 
-  style="display: block;">
-  {{product.metafields.stamped.badge}}
-  </span>
-  <!-- Stamped - End Star Rating Badge --><br></span>
-            </div>
-            <div class="product-type-data">
-              <div class="price-box">
-                <div id="price" class="detail-price" itemprop="price">
-                  {%- if variant_tmp.compare_at_price > variant_tmp.price -%}
-                  <s class="old-price">{{ variant_tmp.compare_at_price | money }}</s>
-                  <!--span class="price_percentage">-{{ variant_tmp.compare_at_price | minus: variant_tmp.price | times: 100.0 | divided_by: variant_tmp.compare_at_price | money_without_currency | times: 100 | remove: '.0'}}%</span-->
-                  {%- endif -%}
-                  <div class="price">{{ variant_tmp.price | money }}</div>
-                </div>
-                <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
-                {%- if product.available -%}
-                <link itemprop="availability" href="http://schema.org/InStock" />
-                {%- else -%}
-                <link itemprop="availability" href="http://schema.org/OutOfStock" />
+                {%- if collection.previous_product -%}
+                  <div
+                    class="product-nav product-prev">
+                    <a
+                      href="{{ collection.previous_product }}"
+                      title="Previous Product">
+                      {{ settings.product_prev_text }}
+                    </a>
+                    {%- assign words = collection.previous_product | split: '/' -%}
+                    {%- assign word = words.last -%}
+                    <div
+                      class="product-pop theme-border-color"
+                      data-with-product="{{word}}">
+                      <script
+                        type="text/template">
+                        <img
+                          class="product-image lazyload"
+                          data-src="[img:medium]"
+                          alt="#title#" />
+                        <h3
+                          class="product-name">#title#</h3>
+                      </script>
+                    </div>
+                  </div>
                 {%- endif -%}
-              </div>
+                {%- if collection.next_product -%}
+                  <div
+                    class="product-nav product-next">
+                    <a
+                      class="product-next"
+                      href="{{ collection.next_product }}"
+                      title="Next Product">
+                      {{ settings.product_next_text }}
+                    </a>
+                    {%- assign words = collection.next_product | split: '/' -%}
+                    {%- assign word = words.last -%}
+                    <div
+                      class="product-pop theme-border-color"
+                      data-with-product="{{word}}">
+                      <script
+                        type="text/template">
+                        <img
+                          class="product-image lazyload"
+                          data-src="[img:medium]"
+                          alt="#title#" />
+                        <h3
+                          class="product-name">#title#</h3>
+                      </script>
+                    </div>
+                  </div>
+                {%- endif -%}
+              {%- endif -%}
             </div>
-            <div class="product-type-main">
-              {%- form 'product', product, class:'product-form', id:'product-main-form' -%}
-              <div id="product-variants" class="product-options" {% if product.options.size == 1 and product.options.first == 'Title' %}style="display: none;"{% endif %}>
-                <select id="product-selectors" name="id" style="display: none;">
+          {%- endif -%}
+          <div
+            class="product-name top-product-detail">
+            <h1>
+              <a
+                href="{{ product.url | within: collection }}">
+                {%- if settings.language_enable -%}
+                  <span
+                    class="lang1">{{ product.title | split: '|' | first }}</span>
+                  <span
+                    class="lang2">{{ product.title | split: '|' | last }}</span>
+                {%- else -%}
+                  {{ product.title | split: '|' | first }}
+                {%- endif -%}
+              </a>
+            </h1>
+          </div>
+          <div
+            class="review-product-details">
+            <span class="shopify-product-reviews-badge"
+              data-id="{{ product.id }}">
+              <!-- Stamped - Begin Star Rating Badge -->
+              <span
+                class="stamped-product-reviews-badge stamped-main-badge"
+                data-id="{{ product.id }}"
+                data-product-sku="{{ product.handle }}"
+                data-product-title="{{product.title}}"
+                data-product-type="{{product.type}}"
+                style="display: block;">
+                {{ product.metafields.stamped.badge }}
+              </span>
+              <!-- Stamped - End Star Rating Badge -->
+              <br></span>
+          </div>
+          <div
+            class="product-type-data">
+            <div
+              class="price-box">
+              <div
+                id="price"
+                class="detail-price"
+                itemprop="price">
+                {%- if variant_tmp.compare_at_price > variant_tmp.price -%}
+                  <s
+                    class="old-price">{{ variant_tmp.compare_at_price | money }}</s>
+                  <!--span class="price_percentage">-{{ variant_tmp.compare_at_price | minus: variant_tmp.price | times: 100.0 | divided_by: variant_tmp.compare_at_price | money_without_currency | times: 100 | remove: '.0'}}%</span-->
+                {%- endif -%}
+                <div
+                  class="price">{{ variant_tmp.price | money }}</div>
+              </div>
+              <meta
+                itemprop="priceCurrency"
+                content="{{ shop.currency }}" />
+              {%- if product.available -%}
+                <link
+                  itemprop="availability"
+                  href="http://schema.org/InStock" />
+              {%- else -%}
+                <link
+                  itemprop="availability"
+                  href="http://schema.org/OutOfStock" />
+              {%- endif -%}
+            </div>
+          </div>
+          <div
+            class="product-type-main">
+            {%- form 'product', product, class: 'product-form', id: 'product-main-form' -%}
+              <div
+                id="product-variants"
+                class="product-options"
+                {% if product.options.size == 1 and product.options.first == 'Title' %}style="display: none;"{% endif %}>
+                <select
+                  id="product-selectors"
+                  name="id"
+                  style="display: none;">
                   {%- for variant in product.variants -%}
-                  {%- if variant.available -%}
-                  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
-                  {%- else -%}
-                  <option disabled="disabled">
-                    {{ variant.title }} - {{'products.product.sold_out' | t}}
-                  </option>
-                  {%- endif -%}
+                    {%- if variant.available -%}
+                      <option
+                        {% if variant == product.selected_or_first_available_variant %}
+                        selected="selected"
+                        {% endif %}
+                        value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+                    {%- else -%}
+                      <option
+                        disabled="disabled">
+                        {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                      </option>
+                    {%- endif -%}
                   {%- endfor -%}
                 </select>
               </div>
-              <div class="product-options-bottom">
-                <div class="add-to-cart-box">
-                  <div class="input-box">
-                    <input type="text" id="qty" name="quantity" value="1" min="1" class="quantity-selector">
-                    <div class="plus-minus">
-                      <div class="increase items" onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;">
-                        <i class="icon-up-dir"></i>
+              <div
+                class="product-options-bottom">
+                <div
+                  class="add-to-cart-box">
+                  <div
+                    class="input-box">
+                    <input
+                      type="text"
+                      id="qty"
+                      name="quantity"
+                      value="1"
+                      min="1"
+                      class="quantity-selector">
+                    <div
+                      class="plus-minus">
+                      <div
+                        class="increase items"
+                        onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;">
+                        <i
+                          class="icon-up-dir"></i>
                       </div>
-                      <div class="reduced items" onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty > 1 ) result.value--;return false;">
-                        <i class="icon-down-dir"></i>
+                      <div
+                        class="reduced items"
+                        onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty > 1 ) result.value--;return false;">
+                        <i
+                          class="icon-down-dir"></i>
                       </div>
                     </div>
                   </div>
-                  <div class="actions">
-                    <div class="action-list addtocart">
-                      <div class="button-wrapper">
+                  <div
+                    class="actions">
+                    <div
+                      class="action-list addtocart">
+                      <div
+                        class="button-wrapper">
                         {%- if product.available -%}
-                        <div class="button-wrapper-content">
-                          <button type="submit" name="add" class="btn-cart add-to-cart bordered uppercase">
-                            <i class="icon-cart"></i>
-                            <span>{{ 'products.product.add_to_cart' | t }}</span>
-                          </button>
-                        </div>
+                          <div
+                            class="button-wrapper-content">
+                            <button
+                              type="submit"
+                              name="add"
+                              class="btn-cart add-to-cart bordered uppercase">
+                              <i
+                                class="icon-cart"></i>
+                              <span>{{ 'products.product.add_to_cart' | t }}</span>
+                            </button>
+                          </div>
                         {%- else -%}
-                        <div class="button-wrapper-content">
-                          <button href="javascript:;" class="btn-cart add-to-cart" disabled="disabled">
-                            <i class="icon-cart"></i>
-                            <span>{{ 'products.product.sold_out' | t }}</span>
-                          </button>
-                        </div>
+                          <div
+                            class="button-wrapper-content">
+                            <button
+                              href="javascript:;"
+                              class="btn-cart add-to-cart"
+                              disabled="disabled">
+                              <i
+                                class="icon-cart"></i>
+                              <span>{{ 'products.product.sold_out' | t }}</span>
+                            </button>
+                          </div>
                         {%- endif -%}
                       </div>
                     </div>
                     {%- if settings.disable_addtolink == blank -%}
-                    <div class="action-list wishlist">
-                      {% include 'wishlist-item' %}
-                    </div>
+                      <div
+                        class="action-list wishlist">
+                        {% include 'wishlist-item' %}
+                      </div>
                     {%- endif -%}
                   </div>
                   {%- if settings.enable_payment_button -%}
-                  {{ form | payment_button }}
+                    {{ form | payment_button }}
                   {%- endif -%}
                 </div>
               </div>
-              {%- endform -%}
-            </div>
-            {%- if settings.product_tags -%}
-            <div class="tags">
-              <i class="icon-tags" {% if settings.language_enable %}data-translate="blogs.article.tags"{% endif %}>{{ 'blogs.article.tags' | t }}</i>
+            {%- endform -%}
+          </div>
+          {%- if settings.product_tags -%}
+            <div
+              class="tags">
+              <i
+                class="icon-tags"
+                {% if settings.language_enable %}data-translate="blogs.article.tags"{% endif %}>{{ 'blogs.article.tags' | t }}</i>
               {%- for tag in product.tags -%}
-              <span class="separator">/</span>
-              <a href="/collections/all/{{ tag | handle }}" rel="tag">{{ tag }}</a>
+                <span
+                  class="separator">/</span>
+                <a
+                  href="/collections/all/{{ tag | handle }}"
+                  rel="tag">{{ tag }}</a>
               {%- endfor -%}
             </div>
-            {%- endif -%}
-            {%- if settings.disable_socical_icon == blank -%}
+          {%- endif -%}
+          {%- if settings.disable_socical_icon == blank -%}
             {% include 'addthis' %}
-            {%- endif -%}
+          {%- endif -%}
+        </div>
+        <div
+          id='underneathAddToCart'>
+
+          <div
+            id='threecoladdto'>
+            <div
+              class='threecoladdtocols'>Natural
+            </div>
+            <img
+              style='width:26px;float:left'
+              src='https://cdn.shopify.com/s/files/1/0417/0193/3209/files/greend.png?v=1663508228'>
+            <div
+              class='threecoladdtocols'>Easy to Use
+            </div>
+            <img
+              style='width:26px;float:left'
+              src='https://cdn.shopify.com/s/files/1/0417/0193/3209/files/greend.png?v=1663508228'>
+            <div
+              class='threecoladdtocols'>Ships Fast
+            </div>
           </div>
-		  <div id='underneathAddToCart'>
-         
-            <div id='threecoladdto'>
-   <div class='threecoladdtocols'>Natural
-   </div>
-   <img style='width:26px;float:left' src='https://cdn.shopify.com/s/files/1/0417/0193/3209/files/greend.png?v=1663508228'>
-   <div class='threecoladdtocols'>Easy to Use
-   </div>
-   <img style='width:26px;float:left' src='https://cdn.shopify.com/s/files/1/0417/0193/3209/files/greend.png?v=1663508228'>
-   <div class='threecoladdtocols'>Ships Fast
-   </div>
-</div>
-            <br style='clear:both'>
-        
-                        {%- if settings.product_short_desc != '0' -%}
-            <div class="short-description-detail">
-              <div class="short-description">
+          <br
+            style='clear:both'>
+
+          {%- if settings.product_short_desc != '0' -%}
+            <div
+              class="short-description-detail">
+              <div
+                class="short-description">
                 {% if product.metafields.custom.short_description != blank %}
-                  {{product.metafields.custom.short_description | truncatewords: 30}}
+                  {{ product.metafields.custom.short_description | truncatewords: 30 }}
                 {% else %}
                   {%- assign description = product.description -%}
                   {%- if product.description contains '[shortdesc]' and settings.product_short_desc == '1' -%}
-                  {%- assign last = description | split:'[shortdesc]' | last -%}
-                  {%- assign description = last | split:'[/shortdesc]' | first -%}
+                    {%- assign last = description | split: '[shortdesc]' | last -%}
+                    {%- assign description = last | split: '[/shortdesc]' | first -%}
                   {%- else -%}
-                  {%- if product.description contains '[countdown]' -%}
-                  {%- assign description = description | split:'[/countdown]' | last -%}
-                  {%- endif -%}
-                  {%- if product.description contains '[shortdesc]' -%}
-                  {%- assign description = description | split:'[/shortdesc]' | last -%}
-                  {%- endif -%}
-                  {%- if product.description contains '[additional]' -%}
-                  {%- assign description = description | split:'[/additional]' | last -%}
-                  {%- endif -%}
-                  {%- if settings.product_short_desc == '1' -%}
-                  {%- assign description = description | strip_html | truncatewords: 30 -%}
-                  {%- endif -%}
+                    {%- if product.description contains '[countdown]' -%}
+                      {%- assign description = description | split: '[/countdown]' | last -%}
+                    {%- endif -%}
+                    {%- if product.description contains '[shortdesc]' -%}
+                      {%- assign description = description | split: '[/shortdesc]' | last -%}
+                    {%- endif -%}
+                    {%- if product.description contains '[additional]' -%}
+                      {%- assign description = description | split: '[/additional]' | last -%}
+                    {%- endif -%}
+                    {%- if settings.product_short_desc == '1' -%}
+                      {%- assign description = description | strip_html | truncatewords: 30 -%}
+                    {%- endif -%}
                   {%- endif -%}
                   {%- if settings.language_enable -%}
-                  <div class="lang1">{{ description | split: '[lang2]' | first }}</div>
-                  <div class="lang2">{{ description | split: '[lang2]' | last }}</div>
+                    <div
+                      class="lang1">{{ description | split: '[lang2]' | first }}</div>
+                    <div
+                      class="lang2">{{ description | split: '[lang2]' | last }}</div>
                   {%- else -%}
-                  {{ description | split: '[lang2]' | first }}
+                    {{ description | split: '[lang2]' | first }}
                   {%- endif -%}
                 {% endif %}
               </div>
             </div>
-            {%- endif -%}
-            {%- if settings.product_short_custom != blank -%}
-            <div class="porto-custom-block">
-              <div class="custom-block-bar">
+          {%- endif -%}
+          {%- if settings.product_short_custom != blank -%}
+            <div
+              class="porto-custom-block">
+              <div
+                class="custom-block-bar">
                 {%- if settings.language_enable -%}
-                <div class="lang1">{{ settings.custom_block_content_after | split: '[lang2]' | first }}</div>
-                <div class="lang2">{{ settings.custom_block_content_after | split: '[lang2]' | last }}</div>
+                  <div
+                    class="lang1">{{ settings.custom_block_content_after | split: '[lang2]' | first }}</div>
+                  <div
+                    class="lang2">{{ settings.custom_block_content_after | split: '[lang2]' | last }}</div>
                 {%- else -%}
-                {{ settings.custom_block_content_after | split: '[lang2]' | first }}
+                  {{ settings.custom_block_content_after | split: '[lang2]' | first }}
                 {%- endif -%}
               </div>
             </div>
-            {%- endif -%}
-            <div class="middle-product-detail">
-              {%- if settings.product_availability -%}
-              <div class="product-inventory">
-                <span {% if settings.language_enable %}data-translate="products.product.availability"{% endif %}>{{ 'products.product.availability' | t }} </span>
-                <span class="in-stock">
+          {%- endif -%}
+          <div
+            class="middle-product-detail">
+            {%- if settings.product_availability -%}
+              <div
+                class="product-inventory">
+                <span
+                  {% if settings.language_enable %}data-translate="products.product.availability"{% endif %}>{{ 'products.product.availability' | t }}
+                </span>
+                <span
+                  class="in-stock">
                   {%- if product.selected_or_first_available_variant.inventory_management -%}
-                  {%- assign first_inventory = product.selected_or_first_available_variant.inventory_quantity -%}
-                  {%- if first_inventory > 0 -%}
-                  {{first_inventory}} {{ 'products.product.in_stock' | t }}
+                    {%- assign first_inventory = product.selected_or_first_available_variant.inventory_quantity -%}
+                    {%- if first_inventory > 0 -%}
+                      {{ first_inventory }} {{ 'products.product.in_stock' | t }}
+                    {%- else -%}
+                      {{ 'products.product.out_of_stock' | t }}
+                    {%- endif -%}
                   {%- else -%}
-                  {{ 'products.product.out_of_stock' | t }}
-                  {%- endif -%}
-                  {%- else -%}
-                  {{ 'products.product.many_in_stock' | t }}
+                    {{ 'products.product.many_in_stock' | t }}
                   {%- endif -%}
                 </span>
               </div>
-              {%- endif -%}
-              {%- if settings.product_sku -%}
+            {%- endif -%}
+            {%- if settings.product_sku -%}
               {%- assign current_variant = product.selected_or_first_available_variant -%}
-              <div class="product-sku"><span {% if settings.language_enable %}data-translate="products.product.sku"{% endif %}>{{ 'products.product.sku' | t }} </span><span class="sku">{{ current_variant.sku }}</span></div>
-              {%- endif -%}
-              {%- if settings.product_type -%}
-              <div class="product-type">
-                <label {% if settings.language_enable %}data-translate="products.product.product_type"{% endif %}>{{ 'products.product.product_type' | t }} </label>
+              <div
+                class="product-sku">
+                <span
+                  {% if settings.language_enable %}data-translate="products.product.sku"{% endif %}>{{ 'products.product.sku' | t }}
+                </span>
+                <span
+                  class="sku">{{ current_variant.sku }}</span>
+              </div>
+            {%- endif -%}
+            {%- if settings.product_type -%}
+              <div
+                class="product-type">
+                <label
+                  {% if settings.language_enable %}data-translate="products.product.product_type"{% endif %}>{{ 'products.product.product_type' | t }}
+                </label>
                 <span>{{ product.type }}</span>
               </div>
-              {%- endif -%}
-              {%- if settings.product_vendor -%}
-              <div class="product-vendor">
-                <label {% if settings.language_enable %}data-translate="products.product.product_vendor"{% endif %}>{{ 'products.product.product_vendor' | t }} </label>
+            {%- endif -%}
+            {%- if settings.product_vendor -%}
+              <div
+                class="product-vendor">
+                <label
+                  {% if settings.language_enable %}data-translate="products.product.product_vendor"{% endif %}>{{ 'products.product.product_vendor' | t }}
+                </label>
                 <span>{{ product.vendor }}</span>
               </div>
-              {%- endif -%}
-              {%- if product.description contains '[countdown]' -%}
-              {%- assign count_down_first = product.description | split:'[/countdown]' | first -%}
-              {%- assign count_down_final = count_down_first | split:'[countdown]' | last -%}
-              <div class="bottom-product-dailydeal bottom-home-dailydeal">
-                <span class="title" {% if settings.language_enable %}data-translate="products.product.count_down"{% endif %}>{{'products.product.count_down' | t }} </span><div class="product-date" data-date="{{ count_down_final }}"></div>
+            {%- endif -%}
+            {%- if product.description contains '[countdown]' -%}
+              {%- assign count_down_first = product.description | split: '[/countdown]' | first -%}
+              {%- assign count_down_final = count_down_first | split: '[countdown]' | last -%}
+              <div
+                class="bottom-product-dailydeal bottom-home-dailydeal">
+                <span
+                  class="title"
+                  {% if settings.language_enable %}data-translate="products.product.count_down"{% endif %}>{{ 'products.product.count_down' | t }}
+                </span>
+                <div
+                  class="product-date"
+                  data-date="{{ count_down_final }}"></div>
               </div>
-              {%- endif -%}
+            {%- endif -%}
+          </div>
+          {%- if settings.full_width_product_tab == blank -%}
+            <div
+              class="product-collateral">
+              <div
+                class="accordionholder">
+                <button
+                  class="accordion">Description</button>
+                <!--title-->
+                <div
+                  class="panelacc">
+                  <div
+                    class="product-description rte"
+                    itemprop="description">
+                    {% section 'product-page-tab-custom' %}
+                  </div>
+                </div>
+                {% if product.metafields.my_fields.accordion2text != blank %}
+                  <button
+                    class="accordion">{{ product.metafields.my_fields.accordion2title }}
+                  </button>
+                  <!--title-->
+                  <div
+                    class="panelacc">
+                    {% if product.metafields.my_fields.accordion2text != blank %}
+                      {{ product.metafields.my_fields.accordion2text }}
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if product.metafields.my_fields.accordion3text != blank %}
+                  <button
+                    class="accordion">{{ product.metafields.my_fields.accordion3title }}
+                  </button>
+                  <!--title-->
+                  <div
+                    class="panelacc">
+                    {% if product.metafields.my_fields.accordion3text != blank %}
+                      {{ product.metafields.my_fields.accordion3text }}
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if product.metafields.my_fields.accordion4text != blank %}
+                  <button
+                    class="accordion">{{ product.metafields.custom.accordion4title }}
+                  </button>
+                  <!--title-->
+                  <div
+                    class="panelacc">
+                    {% if product.metafields.my_fields.accordion4text != blank %}
+                      {{ product.metafields.my_fields.accordion4text }}
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if product.metafields.my_fields.accordion5text != blank %}
+                  <button
+                    class="accordion">{{ product.metafields.my_fields.accordion5title }}
+                  </button>
+                  <!--title-->
+                  <div
+                    class="panelacc">
+                    {% if product.metafields.my_fields.accordion5text != blank %}
+                      {{ product.metafields.my_fields.accordion5text }}
+                    {% endif %}
+                  </div>
+                {% endif %}
+
+                {% if product.metafields.my_fields.accordion6text != blank %}
+                  <button
+                    class="accordion">{{ product.metafields.my_fields.accordion6title }}
+                  </button>
+                  <!--title-->
+                  <div
+                    class="panelacc">
+                    {% if product.metafields.my_fields.accordion6text != blank %}
+                      {{ product.metafields.my_fields.accordion6text }}
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+
             </div>
-		      {%- if settings.full_width_product_tab == blank -%}
-    <div class="product-collateral">
-<div class="accordionholder">
-<button class="accordion">Description</button> <!--title-->
-<div class="panelacc">
-      <div class="product-description rte" itemprop="description">
-        {% section 'product-page-tab-custom' %}
-      </div>
-</div>
- {% if product.metafields.my_fields.accordion2text != blank %}
-<button class="accordion">{{ product.metafields.my_fields.accordion2title }} </button> <!--title-->
-<div class="panelacc">
- {% if product.metafields.my_fields.accordion2text != blank %}
- {{ product.metafields.my_fields.accordion2text }} 
-{% endif %}
-</div>
-{% endif %}
- {% if product.metafields.my_fields.accordion3text != blank %}                
-<button class="accordion">{{ product.metafields.my_fields.accordion3title }} </button> <!--title-->
-<div class="panelacc">
-   {% if product.metafields.my_fields.accordion3text != blank %}
- {{ product.metafields.my_fields.accordion3text }} 
-{% endif %}
-</div>
-   {% endif %}
- {% if product.metafields.my_fields.accordion4text != blank %}
-<button class="accordion">{{ product.metafields.custom.accordion4title }} </button> <!--title-->
-<div class="panelacc">
- {% if product.metafields.my_fields.accordion4text != blank %}
- {{ product.metafields.my_fields.accordion4text }} 
-{% endif %}
-   </div>
-   {% endif %}
- {% if product.metafields.my_fields.accordion5text != blank %}
-<button class="accordion">{{ product.metafields.my_fields.accordion5title }} </button> <!--title-->
-<div class="panelacc">
- {% if product.metafields.my_fields.accordion5text != blank %}
- {{ product.metafields.my_fields.accordion5text }} 
-{% endif %}
-   </div>
-   {% endif %}
+          {%- endif -%}
 
-   {% if product.metafields.my_fields.accordion6text != blank %}
-<button class="accordion">{{ product.metafields.my_fields.accordion6title }} </button> <!--title-->
-<div class="panelacc">
- {% if product.metafields.my_fields.accordion6text != blank %}
- {{ product.metafields.my_fields.accordion6text }} 
-{% endif %}
-   </div>
-   {% endif %}
-</div>
-
-    </div>
-    {%- endif -%}
-    
-		  </div>
         </div>
       </div>
     </div>
-<div id='blackproductsection'>
-<div class='containerblack'>
-<div class='blacksectleft'>
-<div class='blacksectinnerleft' >
-<div style='width:20%;float:left'>
-<img src='https://cdn.shopify.com/s/files/1/0417/0193/3209/files/green_water_drop.png?v=1662568824'>
-</div>
-<div style='width:75%;float:left;font-size: 20px; position: relative; top: 12px; left: 15px;'>
- {{ product.metafields.my_fields.ingredients1 }} 
-<br>
-</div>
-</div>
-<div class='blacksectinnerleft' >
-
-<div style='width:20%;float:left;margin-right: 4%;'>
-<img src='https://cdn.shopify.com/s/files/1/0417/0193/3209/files/green_water_drop.png?v=1662568824'>
-</div>
-<div style='width:75%;float:left;font-size: 20px; position: relative; top: 12px; left: 15px;'>
- {{ product.metafields.my_fields.ingredients2 }}  <br>
-
-</div>
-</div>
-<div class='blacksectinnerleft' >
-
-<div style='width:20%;float:left;margin-right: 4%;'>
-<img src='https://cdn.shopify.com/s/files/1/0417/0193/3209/files/green_water_drop.png?v=1662568824'>
-</div>
-<div style='width:75%;float:left;font-size: 20px; position: relative; top: 12px; left: 15px;'>
- {{ product.metafields.my_fields.ingredients3 }}  <br>
-
-</div>
-</div>
-<div class='blacksectinnerleft' >
-
-<div style='width:20%;float:left;margin-right: 4%;'>
-<img src='https://cdn.shopify.com/s/files/1/0417/0193/3209/files/green_water_drop.png?v=1662568824'>
-</div>
-<div style='width:75%;float:left;font-size: 20px; position: relative; top: 12px; left: 15px;'>
- {{ product.metafields.my_fields.ingredients4 }}  <br>
-
-</div>
-</div>
-</div>
-
-<div class='blacksectright'>
-Ingredients <br> Kawell Cares for the total welfare of your animal. We developed a new line of products based on natural extracts for animal skin and oral care for your horse, dog, cat or orther furry friend. Our products are based on the best elements of nature. We add passion, love and quality in each detail to offer the best products on the marketplace.
-</div>
-</div>
-</div>
-  <!--Start Stamped.io Auto Installation--><div id="stamped-main-widget" class="stamped-main-widget" data-widget-style="standard" data-product-id="{{ product.id }}" data-name="{{ product.title | escape }}" data-url="{{ shop.url }}{{ product.url }}" data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" data-description="{{ product.description | escape }}" data-product-sku="{{product.handle}}" data-product-type="{{product.type}}" data-widget-language="{{shop.locale}}">{{ product.metafields.stamped.reviews }}</div><!--End Stamped.io Auto Installation-->
-
-  <div class='bottomproductheader'> People Also Buy </div>
-<div class='bottomproductsubheader'> NATURAL PRODUCTS FOR YOUR PETS AND HORSES </div>
-<div class='bottomproductmain'>
-  <div class='bottomproduct'>
-    <div class='bottomproductimgholder'><img src="{{ 'Dragons-Blood-Natural-Healing-Spray.png' | file_img_url: '250x250' }}"></div>
-
-    <div class='bottomproductindheader'> Dragon's Blood Natural Healing Spray </div>
-    <div class='bottomproductbotheader'> Kawell USA Dragon’s Blood Spray promotes accelerated healing of skin wounds, while soothing and protecting the skin. </div>
-    <a href='https://kawellusa.com/products/wound-spray-drago'><button class='shopnowbottomproduct'> Shop Now </button></a>
   </div>
-  <div class='bottomproduct'>
-    <div class='bottomproductimgholder'><img src="{{ 'Matico-Natural-Healing-Shampoo---Horse.png' | file_img_url: '250x250' }}"></div>
-    <div class='bottomproductindheader'> Matico Natural Healing Shampoo For Horses
- </div>
-    <div class='bottomproductbotheader'> Equine Matico Natural Healing Shampoo is made to do more than just clean. Matico Extract naturally helps treat a variety of skin conditions. </div>
-    <a href='https://kawellusa.com/products/shampoo-matico'><button class='shopnowbottomproduct'> Shop Now </button></a>
+  <div
+    id='blackproductsection'>
+    <div
+      class='containerblack'>
+      <div
+        class='blacksectleft'>
+        <div
+          class='blacksectinnerleft'>
+          <div
+            style='width:20%;float:left'>
+            <img
+              src='https://cdn.shopify.com/s/files/1/0417/0193/3209/files/green_water_drop.png?v=1662568824'>
+          </div>
+          <div
+            style='width:75%;float:left;font-size: 20px; position: relative; top: 12px; left: 15px;'>
+            {{ product.metafields.my_fields.ingredients1 }}
+            <br>
+          </div>
+        </div>
+        <div
+          class='blacksectinnerleft'>
+
+          <div
+            style='width:20%;float:left;margin-right: 4%;'>
+            <img
+              src='https://cdn.shopify.com/s/files/1/0417/0193/3209/files/green_water_drop.png?v=1662568824'>
+          </div>
+          <div
+            style='width:75%;float:left;font-size: 20px; position: relative; top: 12px; left: 15px;'>
+            {{ product.metafields.my_fields.ingredients2 }} <br>
+
+          </div>
+        </div>
+        <div
+          class='blacksectinnerleft'>
+
+          <div
+            style='width:20%;float:left;margin-right: 4%;'>
+            <img
+              src='https://cdn.shopify.com/s/files/1/0417/0193/3209/files/green_water_drop.png?v=1662568824'>
+          </div>
+          <div
+            style='width:75%;float:left;font-size: 20px; position: relative; top: 12px; left: 15px;'>
+            {{ product.metafields.my_fields.ingredients3 }} <br>
+
+          </div>
+        </div>
+        <div
+          class='blacksectinnerleft'>
+
+          <div
+            style='width:20%;float:left;margin-right: 4%;'>
+            <img
+              src='https://cdn.shopify.com/s/files/1/0417/0193/3209/files/green_water_drop.png?v=1662568824'>
+          </div>
+          <div
+            style='width:75%;float:left;font-size: 20px; position: relative; top: 12px; left: 15px;'>
+            {{ product.metafields.my_fields.ingredients4 }} <br>
+
+          </div>
+        </div>
+      </div>
+
+      <div
+        class='blacksectright'>
+        Ingredients <br> Kawell USA Cares for the total welfare of your animal. We developed a new line of products based on natural extracts for animal skin and oral care for your horse, dog, cat or orther furry friend. Our products are based on the best elements of nature. We add passion, love and quality in each detail to offer the best products on the marketplace.
+      </div>
+    </div>
   </div>
-  <div class='bottomproduct'>
-    <div class='bottomproductimgholder'><img src="{{ 'Matico-Natural-Healing-Spray-For-Dogs.png' | file_img_url: '250x250' }}"></div>
-    <div class='bottomproductindheader'> Matico Natural Healing Spray for Dogs </div>
-    <div class='bottomproductbotheader'> Our Matico Natural Healing Spray is designed to care for your pet's hygiene and overall health in a natural way.
- </div>
-    <a href='https://kawellusa.com/products/matico-natural-healing-spray-for-dogs?variant=42334725210265'><button class='shopnowbottomproduct' style='margin-top: 40px;'> Shop Now </button></a>
+  <!--Start Stamped.io Auto Installation-->
+  <div
+    id="stamped-main-widget"
+    class="stamped-main-widget"
+    data-widget-style="standard"
+    data-product-id="{{ product.id }}"
+    data-name="{{ product.title | escape }}"
+    data-url="{{ shop.url }}{{ product.url }}"
+    data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
+    data-description="{{ product.description | escape }}"
+    data-product-sku="{{product.handle}}"
+    data-product-type="{{product.type}}"
+    data-widget-language="{{shop.locale}}">{{ product.metafields.stamped.reviews }}</div>
+  <!--End Stamped.io Auto Installation-->
+
+  <div
+    class='bottomproductheader'>
+    People Also Buy
   </div>
-  <div class='bottomshopnow'><a href='https://kawellusa.com/collections/all'>
-    <button class='bottombutton'>Check More Products
-    </button></a>
+  <div
+    class='bottomproductsubheader'>
+    NATURAL PRODUCTS FOR YOUR PETS AND HORSES
   </div>
+  <div
+    class='bottomproductmain'>
+    <div
+      class='bottomproduct'>
+      <div
+        class='bottomproductimgholder'><img
+          src="{{ 'Dragons-Blood-Natural-Healing-Spray.png' | file_img_url: '250x250' }}"></div>
+
+      <div
+        class='bottomproductindheader'>
+        Dragon's Blood Natural Healing Spray
+      </div>
+      <div
+        class='bottomproductbotheader'>
+        Kawell USA Dragon’s Blood Spray promotes accelerated healing of skin wounds, while soothing and protecting the skin.
+      </div>
+      <a
+        href='https://kawellusa.com/products/wound-spray-drago'>
+        <button
+          class='shopnowbottomproduct'>
+          Shop Now
+        </button>
+      </a>
+    </div>
+    <div
+      class='bottomproduct'>
+      <div
+        class='bottomproductimgholder'><img
+          src="{{ 'Matico-Natural-Healing-Shampoo---Horse.png' | file_img_url: '250x250' }}"></div>
+      <div
+        class='bottomproductindheader'>
+        Matico Natural Healing Shampoo For Horses
+      </div>
+      <div
+        class='bottomproductbotheader'>
+        Equine Matico Natural Healing Shampoo is made to do more than just clean. Matico Extract naturally helps treat a variety of skin conditions.
+      </div>
+      <a
+        href='https://kawellusa.com/products/shampoo-matico'>
+        <button
+          class='shopnowbottomproduct'>
+          Shop Now
+        </button>
+      </a>
+    </div>
+    <div
+      class='bottomproduct'>
+      <div
+        class='bottomproductimgholder'><img
+          src="{{ 'Matico-Natural-Healing-Spray-For-Dogs.png' | file_img_url: '250x250' }}"></div>
+      <div
+        class='bottomproductindheader'>
+        Matico Natural Healing Spray for Dogs
+      </div>
+      <div
+        class='bottomproductbotheader'>
+        Our Matico Natural Healing Spray is designed to care for your pet's hygiene and overall health in a natural way.
+      </div>
+      <a
+        href='https://kawellusa.com/products/matico-natural-healing-spray-for-dogs?variant=42334725210265'>
+        <button
+          class='shopnowbottomproduct'
+          style='margin-top: 40px;'>
+          Shop Now
+        </button>
+      </a>
+    </div>
+    <div
+      class='bottomshopnow'>
+      <a
+        href='https://kawellusa.com/collections/all'>
+        <button
+          class='bottombutton'>Check More Products
+        </button>
+      </a>
+    </div>
+  </div>
+
+
+
 </div>
-
-  
-
-  </div>
-  <script>
-$( document ).ready(function() {
+<script>
+  $(document).ready(function() {
 
     var acc = document.getElementsByClassName("accordion");
-var i;
-for (i = 0; i < acc.length; i++) {
-  acc[i].onclick = function() {
-    for(j = 0; j < acc.length; j++) {
-      acc[j].nextElementSibling.style.maxHeight = null;
-    }
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
+    var i;
+    for (i = 0; i < acc.length; i++) {
+      acc[i].onclick = function() {
+        for (j = 0; j < acc.length; j ++) {
+          acc[j].nextElementSibling.style.maxHeight = null;
+        }
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
 
-  }
-}
- var acc = document.querySelector(".active").onclick = function(){
- alert(this);
-this.nextElementSibling.style.maxHeight = 'none';
- }
-});
-
-  </script>
+      }
+    }
+    var acc = document.querySelector(".active").onclick = function() {
+      alert(this);
+      this.nextElementSibling.style.maxHeight = 'none';
+    }
+  });
+</script>

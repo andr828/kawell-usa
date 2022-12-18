@@ -1,74 +1,24 @@
-<div style="width:100%;background:white" id="blackbannerwrapper1" class="blackbannerwrapper">
-  <div id="blackbanner1" class="blackbanner" style="background:url('{{section.settings.background_image | img_url: 'master'}}') 100% 25% no-repeat black;">
-    <div class="blackbannerinner1">
-
-      <h2 style="color:white">{{section.settings.section_title}}
-      </h2>
-
-      <p style="color:white;font-size:18px">{{section.settings.section_desc}}
-      </p>
-
-      <div class="love--learn-more" onclick="window.location.href='{{section.settings.btn_url}}'">{{section.settings.btn_label}}
-      </div>
+<div
+  style="width:100%;background:white"
+  id="blackbannerwrapper1"
+  class="blackbannerwrapper">
+  <div
+    id="blackbanner1"
+    class="blackbanner"
+    style="background:url('{{section.settings.background_image | img_url: 'master'}}') 100% 25% no-repeat black;">
+    <div
+      class="blackbannerinner1">
+      <h2>{{ section.settings.section_title }}</h2>
+      <p>{{ section.settings.section_desc }}</p>
+      <a
+        class="love--learn-more"
+        href="{{section.settings.btn_url}}">{{ section.settings.btn_label }}</a>
     </div>
-    <div class="blackbannerinner2"></div>
+
+    <div
+      class="blackbannerinner2"></div>
   </div>
 </div>
-
-<script>
-
-  var slideIndex2 = 1;
-
-  function showImage2(n2) { // for Display the first Image
-
-    'use strict';
-
-    var slide2 = document.getElementsByClassName('slides2'),
-
-      dots2 = document.getElementsByClassName('dots2'),
-
-      i;
-
-    if (n2 > slide2.length) { // to prevent larger values than the slide length
-
-      slideIndex2 = 1;
-    }
-
-    if (n2 < 1) { // to avoide negative values
-
-      slideIndex2 = slide2.length;
-    }
-
-    for (i = 0; i < slide2.length; i++) { // to make other images dispaly: none
-
-      slide2[i].style.display = 'none';
-    }
-    slide2[slideIndex2 - 1].style.display = 'block';
-
-    for (i = 0; i < dots.length; i++) { // to remove the active class from other dots
-
-      dots2[i].className = dots2[i].className.replace(' active', '');
-    }
-
-    dots2[slideIndex2 - 1].className += ' active';
-  }
-
-  showImage2(slideIndex2);
-
-  function plusIndex2(n) { // for Next & Prev Actions
-
-    'use strict';
-
-    showImage2(slideIndex2 += n);
-  }
-
-  function currentSlide2(n2) { // for Slide Bullets Selection
-
-    'use strict';
-
-    showImage2(slideIndex2 = n2);
-  }
-</script>
 
 {% schema %}
   {
@@ -84,7 +34,7 @@
         "type": "textarea",
         "id": "section_desc",
         "label": "Section Description",
-        "default": "Kawell cares for the total welfare of your animal. We developed a new line of products based on natural extracts for animal skin and oral care for your horse, dog, cat or other furry friend. Our products are based on the best elements of nature. We add passion, love and quality in each detail to offer the best products on the market."
+        "default": "Kawell USA cares for the total welfare of your animal. We developed a new line of products based on natural extracts for animal skin and oral care for your horse, dog, cat or other furry friend. Our products are based on the best elements of nature. We add passion, love and quality in each detail to offer the best products on the market."
       },
       {
         "type": "text",

@@ -334,9 +334,9 @@
   <script src="{{ 'jquery.fancybox.pack.js' | asset_url }}" async></script>
   {%- endif -%}
 
+  {{ "jquery.elevatezoom.min.js" | asset_url | script_tag }}
   {%- if template contains 'product' or template contains 'collection' -%}
     {% include 'currency' %}
-    {{ "jquery.elevatezoom.min.js" | asset_url | script_tag }}
     {{ 'option_selection.js' | asset_url | script_tag }}
   {%- endif -%}
 
