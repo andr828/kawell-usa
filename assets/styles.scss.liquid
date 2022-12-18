@@ -9629,7 +9629,7 @@ ul.form-list {
     position: absolute;
     font-size: 32px !important;
     font-weight: 800 !important;
-
+    top: 0;
 }
 
 .slider-container .slides .slider-caption {
@@ -9698,6 +9698,7 @@ ul.form-list {
     padding-left: 0;
     display: inline-flex;
     align-items: center;
+    margin-top: 0;
   }
 
   .slider-container .slider-bullets .dots {
@@ -9768,8 +9769,6 @@ ul.form-list {
 
 .slider-numbers1{
     animation: slide-left 1s;
-
-  
 }
 
 @keyframes slide-left {
@@ -10237,6 +10236,7 @@ div#blackbanner1 {
   border-radius: 30px;
   font-size: 22px;
   margin-left: 0px;
+  max-width: 100%;
 }
 
 .blackbannerinner2{
@@ -10652,11 +10652,7 @@ text-align:center
 
 .slider-numbers3{
     animation: slide-left 1s;
-
-  
 }
-
-
 
 .slider-container3 .slides3 .slider-numbers3 {
     position: absolute;
@@ -10669,7 +10665,7 @@ text-align:center
     text-align: center;
     font-size: 19px;
     position: absolute;
-    bottom: 15px;
+    bottom: 0;
     width: 100%;
     color: #FFF;
     padding: 10px;
@@ -10685,7 +10681,22 @@ text-align:center
   .slider-container3 .slides3 .slider-caption3 {
     position: initial;
     padding-top: 0;
+  }
 
+  .blackbannerinner1 {
+    padding-top: 50px;
+  }
+
+  .blackbannerinner1 .love--learn-more {
+    font-size: 16px;
+  }
+
+  .blackbannerwrapper .slides3.fades {
+    height: initial;
+  }
+
+  .blackbannerwrapper div#blackbanner2 {
+    background-position: 0% 100%;
   }
 }
 
@@ -10760,6 +10771,18 @@ text-align:center
 }
 
 /* SLIDER 3 */
+
+@media screen and (max-width: 768px) {
+  .div#blackbanner2 {
+    background-position: 0% 100%;
+  }
+
+  .slider-container3 {
+    height: initial;
+  }
+}
+
+
 .template-index  .search-extended{display:none}
 
 /* phone
@@ -10793,9 +10816,6 @@ header fixes below
     border-bottom: 5px solid #fff;
   }
     .blackbannerinner4{
-      
-      height: 426px !important;
-
         padding-bottom: 85px !important;
     }
     .slider-caption2 p{
@@ -11024,20 +11044,21 @@ background:black;
   border-radius:50px
 }
 .blacksectright{
-width: 35%;
-    float: left;
-    padding-top: 3.3%;
-    font-size: 19px;
-    position: relative;
-    right: 5%;
+  width: 35%;
+  font-size: 19px;
+  position: relative;
+  right: 5%;
 }
 .containerblack{
   background:black;
   border-radius:50px;
-  height:360px;
   width:100%;
   color:white;
+  padding: 40px 20px;
+  display: flex;
 }
+
+
 .blacksectinnerleft{
   width: 40%;
   float: left;
@@ -11045,8 +11066,18 @@ width: 35%;
   padding-top: 7%;
   padding-bottom:5%;
   color: white;
-
 }
+
+@media screen and (max-width: 768px) {
+  .containerblack {
+    flex-direction: column;
+  }
+
+  .blacksectinnerleft {
+    padding-top: 0;
+  }
+}
+
 .blacksectleft{
   width: 65%;
   float: left;
@@ -11210,10 +11241,10 @@ background: #F1EBE6 0% 0% no-repeat padding-box;
 .bottomproductindheader{
 
   text-align:center;
- margin-top: 25px;
-    margin-bottom: 20px;
-      font-size: 23px;
-    font-weight: 700;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  font-size: 23px;
+  font-weight: 700;
 }
 .bottomproductbotheader{
   text-align:center;
@@ -11231,28 +11262,27 @@ background: #F1EBE6 0% 0% no-repeat padding-box;
   color:black !important;
 }
 .slider-numbers{
-      position: absolute;
-    padding: 15px;
-    font-size: 35px;
-    color: #fff;
-    font-weight: 700;
-    left: 12%;
-    width: 263px;
-    top: 16%;
+  position: absolute;
+  padding: 15px;
+  font-size: 35px;
+  color: #fff;
+  font-weight: 700;
+  left: 12%;
+  width: 263px;
 }
 .home-banner-slider div.slider-image1 > span > button {
-    background: transparent !important;
-    border: 3px solid white;
-    border-radius: 35px !important;
-    font-size: 22px;
-    font-family: 'Open Sans' !important;
-    padding: 10px 30px 10px 30px;
+  background: transparent !important;
+  border: 3px solid white;
+  border-radius: 35px !important;
+  font-size: 22px;
+  font-family: 'Open Sans' !important;
+  padding: 10px 30px 10px 30px;
 }
 
 
 .slider-bullets1 {
-    position:40px;
-    right: 39.5%;
+  position:40px;
+  right: 39.5%;
 }
 
 .home-banner-slider div.slider-image1 > span {
@@ -11404,7 +11434,7 @@ div#blackbanner2 {
     background-image: url(https://cdn.shopify.com/s/files/1/0417/0193/3209/files/Kawell_USA_Love_For_Animals_Homepage.png?v=1662524063)!important;
     padding-bottom: 0% !important;
     border-radius: 30px !important;
-    background-position: 100% 25% !important;
+    background-position: 100% 0 !important;
     background-repeat: no-repeat !important;
     margin-top: 40px !important;
     margin-bottom: -12% !important;
@@ -11468,12 +11498,13 @@ div#blackbanner2 {
   }
 
   button.accordion {
-    overflow: scroll !important;
+    overflow: scroll;
+    letter-spacing: 0.5px;
+    font-size: 15px;
   }
 
   .blacksectleft {
     width: 100%;
-    padding-top: 20px !important;
   }
 
 
@@ -11490,20 +11521,18 @@ div#blackbanner2 {
     font-size: 14px !important;
   }
 
-  .containerblack {
-      height: 460px !important;
-  }
-
   .threecoladdtocols {
-    width: 26% !important;
-    padding-left: 2% !important;
-    font-size: 14px !important;
+    padding-left: 2%;
+    font-size: 14px;
+    margin-top: 2px;
   }
 
 
   #threecoladdto > div:nth-child(1) {
-    width: 19% !important;
+    width: 20% !important;
   }
+
+  threecoladdto
 
   #product-main-form>div.product-options-bottom>div>div.actions>div.action-list.addtocart>div>div>button {
     margin-left: 0px !important;
@@ -11578,9 +11607,12 @@ div#blackbanner2 {
     text-align: center;
   }
 
+  .blackbannerinner1 {
+    padding-top: 40px;
+  }
+
   div#slider-bullets3 {
-      margin-top: 60px !important;
-      text-align: left !important;
+      margin-top: 20px !important;
   }
 
   div#blackbanner2 {
