@@ -4,60 +4,96 @@
     <div class="farrier">
       <div class="farrier_main">
         <div class="farrier--textarea">
-          <h2>{{block.settings.farrier_name}}
+          <h2>{{ block.settings.farrier_name }}
           </h2>
 
-          <p>{{block.settings.farrier_intro | newline_to_br }}
+          <p>{{ block.settings.farrier_intro | newline_to_br }}
           </p>
 
-          <a class="btn-white" href="mailto:{{block.settings.farrier_email}}">{{block.settings.email_button_label}}
-          </a>
+          <a
+            class="btn-white"
+            href="mailto:{{block.settings.farrier_email}}"
+            target="_top">{{ block.settings.email_button_label }}</a>
         </div>
 
         <div class="farrier-image-container">
-          <img class="farrrier-image--side" srcset="{%- if block.settings.farrier_main_image.width >= 550 -%}{{ block.settings.farrier_main_image | image_url: width: 550 }} 550w,{%- endif -%}
-                        {%- if block.settings.farrier_main_image.width >= 720 -%}{{ block.settings.farrier_main_image | image_url: width: 720 }} 720w,{%- endif -%}
-                        {%- if block.settings.farrier_main_image.width >= 990 -%}{{ block.settings.farrier_main_image | image_url: width: 990 }} 990w,{%- endif -%}
-                        {%- if block.settings.farrier_main_image.width >= 1100 -%}{{ block.settings.farrier_main_image | image_url: width: 1100 }} 1100w,{%- endif -%}
-                        {%- if block.settings.farrier_main_image.width >= 1500 -%}{{ block.settings.farrier_main_image | image_url: width: 1500 }} 1500w,{%- endif -%}
-                        {%- if block.settings.farrier_main_image.width >= 2200 -%}{{ block.settings.farrier_main_image | image_url: width: 2200 }} 2200w,{%- endif -%}
-                        {%- if block.settings.farrier_main_image.width >= 3000 -%}{{ block.settings.farrier_main_image | image_url: width: 3000 }} 3000w,{%- endif -%}
-                        {{ block.settings.farrier_main_image | image_url }} {{ block.settings.farrier_main_image.width }}w" src="{{ block.settings.farrier_main_image | image_url: width: 1500 }}" sizes="(min-width: {{ settings.page_width }}px) {% if section.blocks.size == 1 %}calc({{ settings.page_width }}px - 100px){% else %}{{ settings.page_width | minus: 100 | times: 0.67 | round }}px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else %} 500px{% endif %}, calc(100vw - 30px)" alt="{{ block.settings.farrier_main_image.alt | escape }}" loading="lazy" width="{{ block.settings.farrier_main_image.width }}">
+          <img
+            class="farrrier-image--side"
+            srcset="{%- if block.settings.farrier_main_image.width >= 550 -%}
+            {{ block.settings.farrier_main_image | image_url: width: 550 }} 550w,{%- endif -%}
+          {%- if block.settings.farrier_main_image.width >= 720 -%}
+            {{ block.settings.farrier_main_image | image_url: width: 720 }} 720w,{%- endif -%}
+          {%- if block.settings.farrier_main_image.width >= 990 -%}
+            {{ block.settings.farrier_main_image | image_url: width: 990 }} 990w,{%- endif -%}
+          {%- if block.settings.farrier_main_image.width >= 1100 -%}
+            {{ block.settings.farrier_main_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+          {%- if block.settings.farrier_main_image.width >= 1500 -%}
+            {{ block.settings.farrier_main_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+          {%- if block.settings.farrier_main_image.width >= 2200 -%}
+            {{ block.settings.farrier_main_image | image_url: width: 2200 }} 2200w,{%- endif -%}
+          {%- if block.settings.farrier_main_image.width >= 3000 -%}
+            {{ block.settings.farrier_main_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+          {{ block.settings.farrier_main_image | image_url }} {{ block.settings.farrier_main_image.width }}w"
+          src="{{ block.settings.farrier_main_image | image_url: width: 1500 }}"
+          sizes="(min-width: {{ settings.page_width }}px) {% if section.blocks.size == 1 %}calc({{ settings.page_width }}px - 100px){% else %}{{ settings.page_width | minus: 100 | times: 0.67 | round }}px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else %} 500px{% endif %}, calc(100vw - 30px)"
+          alt="{{ block.settings.farrier_main_image.alt | escape }}"
+          loading="lazy"
+          width="{{ block.settings.farrier_main_image.width }}">
 
-          <img class="farrrier-image--gradient" data-src="{{ 'farrier-gradient.png' | asset_img_url: 'master' }}" class="img-responsive main"/>
+          <img
+            class="farrrier-image--gradient"
+            data-src="{{ 'farrier-gradient.png' | asset_img_url: 'master' }}"
+            class="img-responsive main" />
         </div>
       </div>
 
       <div class="farrier_quiz">
-        <h3>{{block.settings.farrier_middle_question_1}}
+        <h3>{{ block.settings.farrier_middle_question_1 }}
         </h3>
-        <p>{{block.settings.farrier_middle_answer_1 | newline_to_br }}
+        <p>{{ block.settings.farrier_middle_answer_1 | newline_to_br }}
         </p>
         <br><br>
-        <h3>{{block.settings.farrier_middle_question_2}}
+        <h3>{{ block.settings.farrier_middle_question_2 }}
         </h3>
-        <p>{{block.settings.farrier_middle_answer_2 | newline_to_br }}
+        <p>{{ block.settings.farrier_middle_answer_2 | newline_to_br }}
         </p>
       </div>
 
       <div class="farrier_bottom">
         <div class="farrier-image-container">
-          <img class="farrrier-image--side" srcset="{%- if block.settings.farrier_bottom_image.width >= 550 -%}{{ block.settings.farrier_bottom_image | image_url: width: 550 }} 550w,{%- endif -%}
-                        {%- if block.settings.farrier_bottom_image.width >= 720 -%}{{ block.settings.farrier_bottom_image | image_url: width: 720 }} 720w,{%- endif -%}
-                        {%- if block.settings.farrier_bottom_image.width >= 990 -%}{{ block.settings.farrier_bottom_image | image_url: width: 990 }} 990w,{%- endif -%}
-                        {%- if block.settings.farrier_bottom_image.width >= 1100 -%}{{ block.settings.farrier_bottom_image | image_url: width: 1100 }} 1100w,{%- endif -%}
-                        {%- if block.settings.farrier_bottom_image.width >= 1500 -%}{{ block.settings.farrier_bottom_image | image_url: width: 1500 }} 1500w,{%- endif -%}
-                        {%- if block.settings.farrier_bottom_image.width >= 2200 -%}{{ block.settings.farrier_bottom_image | image_url: width: 2200 }} 2200w,{%- endif -%}
-                        {%- if block.settings.farrier_bottom_image.width >= 3000 -%}{{ block.settings.farrier_bottom_image | image_url: width: 3000 }} 3000w,{%- endif -%}
-                        {{ block.settings.farrier_bottom_image | image_url }} {{ block.settings.farrier_bottom_image.width }}w" src="{{ block.settings.farrier_bottom_image | image_url: width: 1500 }}" sizes="(min-width: {{ settings.page_width }}px) {% if section.blocks.size == 1 %}calc({{ settings.page_width }}px - 100px){% else %}{{ settings.page_width | minus: 100 | times: 0.67 | round }}px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else %} 500px{% endif %}, calc(100vw - 30px)" alt="{{ block.settings.farrier_bottom_image.alt | escape }}" loading="lazy" width="{{ block.settings.farrier_bottom_image.width }}">
+          <img
+            class="farrrier-image--side"
+            srcset="{%- if block.settings.farrier_bottom_image.width >= 550 -%}
+            {{ block.settings.farrier_bottom_image | image_url: width: 550 }} 550w,{%- endif -%}
+          {%- if block.settings.farrier_bottom_image.width >= 720 -%}
+            {{ block.settings.farrier_bottom_image | image_url: width: 720 }} 720w,{%- endif -%}
+          {%- if block.settings.farrier_bottom_image.width >= 990 -%}
+            {{ block.settings.farrier_bottom_image | image_url: width: 990 }} 990w,{%- endif -%}
+          {%- if block.settings.farrier_bottom_image.width >= 1100 -%}
+            {{ block.settings.farrier_bottom_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+          {%- if block.settings.farrier_bottom_image.width >= 1500 -%}
+            {{ block.settings.farrier_bottom_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+          {%- if block.settings.farrier_bottom_image.width >= 2200 -%}
+            {{ block.settings.farrier_bottom_image | image_url: width: 2200 }} 2200w,{%- endif -%}
+          {%- if block.settings.farrier_bottom_image.width >= 3000 -%}
+            {{ block.settings.farrier_bottom_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+          {{ block.settings.farrier_bottom_image | image_url }} {{ block.settings.farrier_bottom_image.width }}w"
+          src="{{ block.settings.farrier_bottom_image | image_url: width: 1500 }}"
+          sizes="(min-width: {{ settings.page_width }}px) {% if section.blocks.size == 1 %}calc({{ settings.page_width }}px - 100px){% else %}{{ settings.page_width | minus: 100 | times: 0.67 | round }}px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else %} 500px{% endif %}, calc(100vw - 30px)"
+          alt="{{ block.settings.farrier_bottom_image.alt | escape }}"
+          loading="lazy"
+          width="{{ block.settings.farrier_bottom_image.width }}">
 
-          <img class="farrrier-image--gradient" data-src="{{ 'farrier-gradient.png' | asset_img_url: 'master' }}" class="img-responsive main"/>
+          <img
+            class="farrrier-image--gradient"
+            data-src="{{ 'farrier-gradient.png' | asset_img_url: 'master' }}"
+            class="img-responsive main" />
         </div>
 
         <div class="farrier--textarea">
-          <h3>{{block.settings.farrier_bottom_question}}
+          <h3>{{ block.settings.farrier_bottom_question }}
           </h3>
-          <p>{{block.settings.farrier_bottom_answer | newline_to_br }}
+          <p>{{ block.settings.farrier_bottom_answer | newline_to_br }}
           </p>
         </div>
       </div>

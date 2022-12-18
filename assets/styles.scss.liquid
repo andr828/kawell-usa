@@ -9678,12 +9678,6 @@ ul.form-list {
     margin-top: -9%;
 }
 
-@media screen and (max-width: 600px) {
-  .slider-container .slider-bullets {
-    padding-left: 0;
-  }
-}
-
 .slider-container .slider-bullets .dots {
     display: inline-block;
     padding: 5px;
@@ -9691,6 +9685,27 @@ ul.form-list {
     height: 5px;
     background-color: #ffffff;
     border-radius: 50px !important;
+    margin: 0px 2px;
+}
+
+.slider-container .slider-bullets .dots:first-child {
+  margin-left: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .slider-container .slider-bullets {
+    padding-left: 0;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .slider-container .slider-bullets .dots {
+    margin: 0px 8px;
+  }
+
+  .slider-container .slider-bullets .dots:first-child {
+    margin-left: 0;
+  }
 }
 
 .slider-container .slider-bullets .dots:hover {
@@ -9883,6 +9898,12 @@ a.level-top {
     margin-right: 20px !important;
 }
 
+@media screen and (max-width: 1080px) {
+  a.level-top {
+    margin-right: 5px !important;
+  }
+}
+
 i.icon-search {
     font-size: 26px !important;
     color: white;
@@ -9895,7 +9916,6 @@ i.icon-search {
 .search-area.show-icon::before {
     display: none !important;
 }
-.template-index #main-top-nav > div > div > ul > li:nth-child(2){display:none}
 .template-index #main-top-nav > div > div > ul > li.level0.level-top.parent.m-dropdown{display:none}
 .template-index #main-top-nav > div > div > ul > li:nth-child(8) {display:none}
 .template-index #main-top-nav > div > div > ul > li:nth-child(1){display:none}
@@ -10076,6 +10096,7 @@ shopify-section-3f949ff9-a162-406d-9500-5bacd34bbc79>div>div>div>center>h3 {
 
 .foursquarecontainer__desc {
   font-size: 18px;
+  color: #222529;
 }
 
 .foursquarecontainer__title {
@@ -10698,13 +10719,13 @@ text-align:center
 }
 
 .slider-container3 .slider-bullets3 .dots3 {
-    display: inline-block;
-    padding: 5px;
-    width: 10px;
-    height: 10px;
-    background-color: #fff;
-    border-radius: 50%;
-  margin-right: 10px;
+  display: inline-block;
+  padding: 5px;
+  width: 13px;
+  height: 13px;
+  background-color: #fff;
+  border-radius: 50%;
+  margin: 0 8px;
 }
 
 .slider-container3 .slider-bullets3 .dots3:hover {
@@ -10751,7 +10772,7 @@ header fixes below
 
 .main-section-header .header-container.sticky-header:not(.type14):not(.type27) .header-wrapper{background:#fff0 !important;    box-shadow: none !important;}
 
-@media only screen and (max-width:900px) { 
+@media only screen and (max-width:991px) { 
 
   span.slide-left {
     background-color: #00000091;
@@ -11540,7 +11561,7 @@ div#blackbanner2 {
   .blackbannerinner1, .blackbannerinner2, .blackbannerinner3, .blackbannerinner4 {
     width: 100%;
     margin: 0;
-    padding: 15px;
+    padding: 15px 10px;
     padding-bottom: 30px;
     background-color: #00000094;
     border-radius: 0;
