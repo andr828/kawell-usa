@@ -1,93 +1,93 @@
-<center style="font-size:40px;font-weight:700;color:#83B848">{{section.settings.section_title}}</center>
-<center style='font-size:22px;font-family"open sans"'>{{section.settings.section_subTitle}}
+<center style="font-size:40px;font-weight:700;color:#83B848">{{ section.settings.section_title }}</center>
+<center style='font-size:22px;font-family"open sans"'>{{ section.settings.section_subTitle }}
 </center>
-<div class="dates" style="display: grid; grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(1, 1fr);padding-left:3%;padding-right:3%">
-  {% for block in section.blocks %}
-    <div class="event" style="background:white;padding:0%;margin:5%;border-radius:20px">
-      <div class="datecontainer" style="margin-left:30px">
-        <span class="datenum" style="font-size: 50px; font-weight: 700;">{{block.settings.event_day}}</span>
-        <div class="datemonth" style="font-size:26px">{{block.settings.event_month}}</div>
-      </div>
-      <div class="eventgreenstrip" style="background:#83B848;text-align:center;color:white;font-size:26px;padding-top:20px;padding-bottom:20px">
-      </div>
-      <div class="eventname" style="text-align:center;padding:30px;font-size:26px;font-weight:700;color:#4D4D4D">
-        {{block.settings.event_name}}
-      </div>
-      <div class="eventlocation" style="text-align:center;padding-bottom:30px"> 
-        {{block.settings.event_location}}
-      </div>
-    </div>
-  {% endfor %}
-</div>
+<div class="upcoming-events"></div>
 
 <div style="height: 100px;">
   <center>
-    <button onclick="window.location.href='{{section.settings.btn_link}}'" style="background:transparent !important;color:black !important;border:2px black solid;border-radius:30px;font-size:20px;top: 22px; position: relative;">{{section.settings.btn_label}}
+    <button onclick="window.location.href='{{section.settings.btn_link}}'" style="background:transparent !important;color:black !important;border:2px black solid;border-radius:30px;font-size:20px;top: 22px; position: relative;">{{ section.settings.btn_label }}
     </button>
   </center>
 </div>
 
+<script>
+
+  (async function() {
+    const req = await fetch("https://mahina.app/app/kawell-usa.myshopify.com", {
+      method: "POST",
+      body: JSON.stringify(
+        {page: 1}
+      )
+    })
+
+    const events = await req.json();
+
+    var latestfourevents = events.events.slice(0, 4);
+
+    const datesElement = document.querySelector(".upcoming-events");
+
+    const innerHtml = latestfourevents.map((event) => {
+      return `
+      <div class="event">
+        <div class="datecontainer">
+          <span class="datenum">${
+        event.startDate.date
+      }</span>
+          <div class="datemonth">${
+        event.startDate.month
+      }</div>
+        </div>
+        <div class="eventgreenstrip">
+        </div>
+        <div class="eventname">
+          ${
+        event.title
+      }
+        </div>
+        <div class="eventlocation"> 
+          ${
+        event.location.name
+      }
+        </div>
+      </div>
+    `;
+    }).join("");
+
+    datesElement.innerHTML = innerHtml;
+
+  })();
+</script>
+
 {% schema %}
-{
-  "name": "Upcoming Events",
-  "settings": [
-    {
-      "type": "text",
-      "id": "section_title",
-      "label": "Section Title",
-      "default": "Upcoming Events"
-    },
-    {
-      "type": "text",
-      "id": "section_subTitle",
-      "label": "Section SubTitle",
-      "default": "IF YOU HAVE ANY QUESTIONS, COMMENTS OR CONCERNS, FEEL FREE TO CONTACT US."
-    },
-    {
-      "type": "text",
-      "id": "btn_label",
-      "label": "Button Label",
-      "default": "Check More Events"
-    },
-    {
-      "type": "url",
-      "id": "btn_link",
-      "label": "Button Url"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "event",
-      "name": "Event",
-      "settings": [
-        {
-          "type": "text",
-          "id": "event_day",
-          "label": "Event Day"
-        },
-        {
-          "type": "text",
-          "id": "event_month",
-          "label": "Event Month"
-        },
-        {
-          "type": "text",
-          "id": "event_name",
-          "label": "Event Name"
-        },
-        {
-          "type": "text",
-          "id": "event_location",
-          "label": "Event Location"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Upcoming Events",
-      "category": "Homepage"
-    }
-  ]
-}
+  {
+    "name": "Upcoming Events",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Section Title",
+        "default": "Upcoming Events"
+      }, {
+        "type": "text",
+        "id": "section_subTitle",
+        "label": "Section SubTitle",
+        "default": "IF YOU HAVE ANY QUESTIONS, COMMENTS OR CONCERNS, FEEL FREE TO CONTACT US."
+      }, {
+        "type": "text",
+        "id": "btn_label",
+        "label": "Button Label",
+        "default": "Check More Events"
+      }, {
+        "type": "url",
+        "id": "btn_link",
+        "label": "Button Url"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Upcoming Events",
+        "category": "Homepage"
+      }
+    ]
+  }
 {% endschema %}

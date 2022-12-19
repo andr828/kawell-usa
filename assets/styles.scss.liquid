@@ -12151,3 +12151,60 @@ background-color: #000000b3 !important;
   color: #83b848;
   border-color: #83b848;
 }
+
+.upcoming-events {
+  display: flex;
+  gap: 20px;
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 0 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 1024px) {
+  .upcoming-events {
+    flex-direction: column;
+  }
+}
+
+.upcoming-events .event {
+  background: white;
+  border-radius: 20px;
+  max-width: 400px;
+}
+
+.upcoming-events .datecontainer {
+  margin-left:30px;
+}
+
+.upcoming-events .datenum {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.upcoming-events .datemonth {
+  font-size:26px;
+}
+
+.upcoming-events .eventgreenstrip {
+  background:#83B848;
+  text-align:center;
+  color:white;
+  font-size:26px;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+
+.upcoming-events .eventname {
+  text-align:center;
+  padding:30px;
+  font-size:26px;
+  font-weight:700;
+  color:#4D4D4D;
+}
+
+.upcoming-events .eventlocation {
+  text-align:center;
+  padding-bottom:30px;
+}
